@@ -1,0 +1,14 @@
+/* ---- global styling ---- */
+
+img{
+  border-radius: 50%;
+}
+
+header{
+  background-color: gray;
+}
+
+nav ul li{
+  list-style-type: none;
+  display: inline;
+}

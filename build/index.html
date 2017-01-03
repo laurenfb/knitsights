@@ -9,7 +9,28 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-    <h1>hi, this works</h1>
+
+
+    <!-- Underscore Templates -->
+    <script type="text/template" id="top-nav-template">
+      <header>
+        <div class='row'>
+          <div id='logo-holder' class='medium-2 columns'><img src='assets/logo.png'/></div>
+          <h1 class='medium-6 columns'>knitsights</h1>
+          <nav class='medium-4 columns end'>
+            <ul>
+              <li>link to one thing | </li>
+              <li>link to another thing | </li>
+              <li>link to third thing</li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+    </script>
+
+
+    <!-- thanks, Webpack! -->
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
