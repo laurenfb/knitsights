@@ -14,3 +14,13 @@ nav ul li{
   list-style-type: none;
   display: inline;
 }
+
+/* ---- import button ---- */
+.btn-import{
+  background-color: red;
+  font-weight: bold;
+}
+
+.btn-import:hover{
+  background-color: black;
+}
