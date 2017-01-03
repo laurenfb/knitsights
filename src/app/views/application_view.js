@@ -9,8 +9,8 @@ const ApplicationView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ApplicationView rendered")
-    $('body').prepend(this.topNavT)
+    console.log("ApplicationView rendered");
+    this.$el.append(this.topNavT)
   }
 });
 

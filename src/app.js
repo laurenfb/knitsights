@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 $(document).ready(function() {
   var application = new ApplicationView({
-    el: $('body')
+    el: $('main')
     //, model: user // or something? there needs to be a model here eventually
   })
 
