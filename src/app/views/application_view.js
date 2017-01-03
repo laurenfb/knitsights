@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
+import ImportView from './import_view'
 
 
 const ApplicationView = Backbone.View.extend({
@@ -11,22 +12,24 @@ const ApplicationView = Backbone.View.extend({
   render: function() {
     console.log("ApplicationView rendered");
     this.$el.prepend(this.topNavT);
-    // check to see if the import button needs to be rendered
-    // checkButton();
+    // check to see if import has happened; decide what to render based on that
+    // checkImport();
   },
 
-  checkButton: function() {
-    // if this.model.get("imported") == true, do not hide button
-    // else,
+  checkImport: function() {
+    // if this.model.get("imported") == true, show import button
+    // else, do not show it, and render account view
   },
 
   events: {
-    'click .btn-import': 'callAPI'
+    'click .btn-import': 'import'
   },
 
-  callAPI: function() {
+  import: function() {
     // write code here that will call the API to authenticate user. or write that actual FUNCTION in the user model, but write the call to that here?
-    console.log("API called")
+    console.log("import function called")
+    let importV = new ImportView();
+    importV.render();
   }
 });
 
