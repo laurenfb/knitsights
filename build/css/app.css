@@ -24,3 +24,18 @@ nav ul li{
 .btn-import:hover{
   background-color: black;
 }
+
+/* ---- import button ---- */
+
+.project{
+  float: left;
+  padding: 1%;
+  margin: 1%;
+  text-align: center;
+  border: 1px solid black;
+  max-width: 300px;
+}
+
+.project img{
+  max-width: 200px;
+}
