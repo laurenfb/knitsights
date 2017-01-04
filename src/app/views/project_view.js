@@ -8,9 +8,10 @@ const ProjectView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log(this.model.get("timeInDays"))
+    console.log("projectview created", this.model.get("name"))
     $('main').append(this.projectT(this.model.attributes))
   }
 });
+
 
 export default ProjectView;
