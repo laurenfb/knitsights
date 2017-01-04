@@ -11,22 +11,26 @@ var projects = [
   {
     clusterID: 1,
     photoURL: "http://placebeyonce.com/250-250",
-    timeInDays: 28
+    timeInDays: 28,
+    name: "blue sweater"
   },
   {
     clusterID: 1,
     photoURL: "http://placebeyonce.com/250-250",
-    timeInDays: 12
+    timeInDays: 12,
+    name: "husband sweater"
   },
   {
     clusterID: 1,
     photoURL: "http://placebeyonce.com/250-250",
-    timeInDays: 100
+    timeInDays: 100,
+    name: "1st customfit sweater"
   },
   {
     clusterID: 1,
     photoURL: "http://placebeyonce.com/250-250",
-    timeInDays: 29
+    timeInDays: 29,
+    name: "cat"
   }
 ]
 

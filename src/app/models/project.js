@@ -6,6 +6,7 @@ const Project = Backbone.Model.extend({
   toJSON: function(){},
 
   initialize: function(options){
+    this.set("name", options.name)
     this.set("clusterID", options.clusterID);
     this.set("photoURL", options.photoURL);
     this.set("timeInDays", options.timeInDays)
