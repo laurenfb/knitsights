@@ -7,7 +7,7 @@ const ProjectView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ProjectView rendered")
+    console.log(this.model.get("timeInDays"))
   }
 });
 

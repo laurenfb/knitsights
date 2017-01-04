@@ -1,7 +1,34 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import ImportView from './import_view'
+import ImportView from './import_view';
+// delete these lines later, it's just here now for testing
+import ProjectView from './project_view';
+import Project from '../models/project'
+
+
+var projects = [
+  {
+    clusterID: 1,
+    photoURL: "http://placebeyonce.com/250-250",
+    timeInDays: 28
+  },
+  {
+    clusterID: 1,
+    photoURL: "http://placebeyonce.com/250-250",
+    timeInDays: 12
+  },
+  {
+    clusterID: 1,
+    photoURL: "http://placebeyonce.com/250-250",
+    timeInDays: 100
+  },
+  {
+    clusterID: 1,
+    photoURL: "http://placebeyonce.com/250-250",
+    timeInDays: 29
+  }
+]
 
 
 const ApplicationView = Backbone.View.extend({
@@ -14,6 +41,11 @@ const ApplicationView = Backbone.View.extend({
     this.$el.prepend(this.topNavT);
     // check to see if import has happened; decide what to render based on that
     // checkImport();
+    for (var i = 0; i < projects.length; i++) {
+      let project = new Project(projects[i])
+      let projectView = new ProjectView({model: project})
+      projectView.render();
+    }
   },
 
   checkImport: function() {
