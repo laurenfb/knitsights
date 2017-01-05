@@ -1,7 +1,6 @@
 import Backbone from 'backbone';
 import $ from 'jquery';
-// delete these lines later, it's just here now for testing
-import ProjectView from './project_view';
+// below here, these import lines may not be needed in this file later
 import Project from '../models/project'
 import Cluster from '../collections/cluster'
 import ClusterView from './cluster_view'
@@ -39,6 +38,7 @@ var clusters = [{ "name": "sweaters", "projects": [
 const ImportView = Backbone.View.extend({
   initialize: function(){
     $('.btn-import').hide();
+    $('.btn-save').show();
   },
 
   render: function() {

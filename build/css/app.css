@@ -15,14 +15,18 @@ nav ul li{
   display: inline;
 }
 
-/* ---- import button ---- */
-.btn-import{
+/* ---- buttons ---- */
+.btn-import, .btn-save{
   background-color: red;
   font-weight: bold;
 }
 
-.btn-import:hover{
+.btn-import:hover, .btn-save:hover{
   background-color: black;
+}
+
+.btn-save{
+  display: none;
 }
 
 /* ---- project styling ---- */
