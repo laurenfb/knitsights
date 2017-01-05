@@ -1,0 +1,55 @@
+/* ---- global styling ---- */
+
+img{
+  border-radius: 50%;
+}
+
+header{
+  background-color: gray;
+  padding-top: 1%;
+  padding-bottom: 1%
+}
+
+nav ul li{
+  list-style-type: none;
+  display: inline;
+}
+
+/* ---- buttons ---- */
+.btn-import, .btn-save{
+  background-color: red;
+  font-weight: bold;
+}
+
+.btn-import:hover, .btn-save:hover{
+  background-color: black;
+}
+
+.btn-save{
+  display: none;
+}
+
+/* ---- project styling ---- */
+
+.project{
+  display: inline-block;
+  padding: 1%;
+  margin: 1%;
+  text-align: center;
+  border: 1px solid black;
+  max-width: 300px;
+}
+
+.project img{
+  max-width: 200px;
+}
+
+
+/* ---- cluster styling ---- */
+.cluster{
+  border: 1px solid black;
+  padding: 1%;
+  margin: 1%;
+  background-color: gold;
+  height: 100%;
+}
