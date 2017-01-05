@@ -10,7 +10,7 @@ const ProjectView = Backbone.View.extend({
   render: function() {
     console.log("projectview created", this.model.get("name"))
     let elementByClusID = ".cid" + this.model.get("clusterID")
-    console.log(elementByClusID)
+    // console.log(elementByClusID)
     $(elementByClusID).append(this.projectT(this.model.attributes))
   }
 });
