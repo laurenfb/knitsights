@@ -25,7 +25,7 @@ nav ul li{
   background-color: black;
 }
 
-/* ---- import button ---- */
+/* ---- project styling ---- */
 
 .project{
   float: left;
@@ -38,4 +38,14 @@ nav ul li{
 
 .project img{
   max-width: 200px;
+}
+
+
+/* ---- cluster styling ---- */
+.cluster{
+  border: 1px solid black;
+  padding: 1%;
+  margin: 1%;
+  background-color: gold;
+  height: 100%;
 }

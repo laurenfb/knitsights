@@ -9,7 +9,8 @@ const ProjectView = Backbone.View.extend({
 
   render: function() {
     console.log("projectview created", this.model.get("name"))
-    $('main').append(this.projectT(this.model.attributes))
+
+    $('.cluster').append(this.projectT(this.model.attributes))
   }
 });
 

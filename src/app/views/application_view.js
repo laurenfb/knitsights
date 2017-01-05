@@ -5,6 +5,8 @@ import ImportView from './import_view';
 // delete these lines later, it's just here now for testing
 import ProjectView from './project_view';
 import Project from '../models/project'
+import Cluster from '../collections/cluster'
+import ClusterView from './cluster_view'
 
 
 var projects = [
@@ -45,11 +47,14 @@ const ApplicationView = Backbone.View.extend({
     this.$el.prepend(this.topNavT);
     // check to see if import has happened; decide what to render based on that
     // checkImport();
+    let cluster =  new Cluster();
+    let clusterView = new ClusterView({model: cluster});
     for (var i = 0; i < projects.length; i++) {
       let project = new Project(projects[i])
-      let projectView = new ProjectView({model: project})
-      projectView.render();
+      cluster.add(project)
     }
+    clusterView.render();
+    return this;
   },
 
   checkImport: function() {
