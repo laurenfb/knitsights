@@ -28,7 +28,7 @@ nav ul li{
 /* ---- project styling ---- */
 
 .project{
-  float: left;
+  display: inline-block;
   padding: 1%;
   margin: 1%;
   text-align: center;
