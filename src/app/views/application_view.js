@@ -12,7 +12,8 @@ const ApplicationView = Backbone.View.extend({
 
   render: function() {
     console.log("ApplicationView rendered");
-    this.$el.prepend(this.topNavT);
+    // console.log(this.$el::before)
+    $('body').prepend(this.topNavT);
     // check to see if import has happened; decide what to render based on that
     // checkImport();
     return this;
