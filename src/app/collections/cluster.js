@@ -8,7 +8,6 @@ const Cluster = Backbone.Collection.extend({
     // console.log("arguments",arguments)
     this.name = options.name
     this.id = options.id
-    this.averageDays = null
   },
 
   calcAverageDays: function() {
@@ -17,8 +16,18 @@ const Cluster = Backbone.Collection.extend({
     for (var i = 0; i < this.models.length; i++) {
       total += this.models[i].get("timeInDays")
     }
-    let avg = total/this.models.length
-    this.averageDays = avg;
+    let avg = parseInt(total/this.models.length)
+    return avg;
+  },
+
+  getRandomPhoto: function(){
+    let min = 0;
+    let max = this.models.length
+    // taken from the internet, gets random number between min (incl) and max (excl)
+    // exclsive bc if the length is 4 the highest index we'll want is 3.
+    let random = Math.floor(Math.random() * (max - min)) + min;
+    let photo = this.models[random].get("photoURL");
+    return photo;
   }
 
 

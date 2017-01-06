@@ -9,6 +9,7 @@ import AccountView from './account_view'
 const ApplicationView = Backbone.View.extend({
   initialize: function(){
     this.topNavT = _.template($('#top-nav-template').html())
+
   },
 
   render: function() {
@@ -38,13 +39,16 @@ const ApplicationView = Backbone.View.extend({
     let importV = new ImportView({el: $('main')});
     console.log(this.model)
     importV.render();
+
+    this.listenTo(importV, 'clustersIncoming', this.save)
   },
 
-  save: function(event) {
-    event.preventDefault();
-    console.log(this.model)
+  save: function(clusterCollections) {
+    // event.preventDefault();
+    console.log(clusterCollections)
     console.log("save fx called")
-    let accountV = new AccountView({el: $('main')});
+    let accountV = new AccountView({el: $('main'),
+                                    clusterCollections: clusterCollections});
     accountV.render();
   }
 });
