@@ -25,14 +25,20 @@ const ApplicationView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-import': 'import'
+    'click .btn-import': 'import',
+    'click .btn-save': 'save'
   },
 
   import: function() {
-    // write code here that will call the API to authenticate user. or write that actual FUNCTION in the user model, but write the call to that here?
+    // i thought i needed to call to the backend here. but instead i will do that when they login.
     console.log("import function called")
     let importV = new ImportView({el: $('main')});
     importV.render();
+  },
+
+  save: function(event) {
+    event.preventDefault();
+    this.trigger('saveClicked', this)
   }
 });
 

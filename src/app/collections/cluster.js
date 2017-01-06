@@ -12,7 +12,13 @@ const Cluster = Backbone.Collection.extend({
   },
 
   calcAverageDays: function() {
-    // this.model.
+    // console.log("we've gotten to calcAverageDays")
+    let total = 0;
+    for (var i = 0; i < this.models.length; i++) {
+      total += this.models[i].get("timeInDays")
+    }
+    let avg = total/this.models.length
+    this.averageDays = avg;
   }
 
 
