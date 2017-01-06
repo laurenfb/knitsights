@@ -44,12 +44,21 @@ nav ul li{
   max-width: 200px;
 }
 
-
-/* ---- cluster styling ---- */
+/* ---- cluster styling on importview ---- */
 .cluster{
   border: 1px solid black;
   padding: 1%;
   margin: 1%;
   background-color: gold;
   height: 100%;
+}
+
+/* ---- cluster styling on accountview ---- */
+.thumbnail{
+  border: 1px solid black;
+  padding: 1%;
+  margin: 1%;
+  background-color: teal;
+  height: 100%;
+  text-align: center;
 }
