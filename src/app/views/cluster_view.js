@@ -10,14 +10,29 @@ const ClusterView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ClusterView rendered")
-    console.log(this.model)
-    $('main').append(this.clusterT(this.model))
-    this.model.models.forEach(function(project) {
+    // console.log("ClusterView rendered")
+    // console.log(this.model)
+    let cluster = $(this.clusterT(this.model))
+    this.$el.append(cluster);
+    // console.log("clusterview this.model", this.model)
+
+    this.model.forEach(function(project) {
       let projectView = new ProjectView({model: project})
-      projectView.render();
+      cluster.append(projectView.render().$el);
     }, this);
+    // this.delegateEvents(this.events);
     return this;
+  },
+
+  events: {
+    'click .cluster': 'sayHi'
+  },
+
+  sayHi: function(event) {
+    // debugger
+    alert("hi clusterview!")
+    event.stopPropagation();
+    // this.model.calcAverageDays();
   }
 });
 

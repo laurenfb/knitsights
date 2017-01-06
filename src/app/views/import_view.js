@@ -23,6 +23,7 @@ var clusters = [{ "name": "sweaters", "projects": [
     timeInDays: 29,
     name: "cat sweater"}
   ]},
+
   {"name": "socks", "projects": [
     {clusterID: 2,
       photoURL: "http://placebeyonce.com/250-250",
@@ -44,6 +45,7 @@ const ImportView = Backbone.View.extend({
   render: function() {
     console.log("ImportView rendered")
     this.renderClusters();
+    return this;
   },
 
   renderClusters: function() {
@@ -51,14 +53,23 @@ const ImportView = Backbone.View.extend({
       // grabbing this so i can make a special class in each div.
       let clusID = clus["projects"][0]["clusterID"]
 
-      let cluster =  new Cluster({name: clus["name"], id: clusID});
-      let clusterView = new ClusterView({model: cluster});
+      let cluster =  new Cluster(null, {name: clus["name"], id: clusID});
+
+      let clusterView = new ClusterView({
+        model: cluster
+        // ,el: $('main')
+      });
+
+      console.log("cluster projects",clus["projects"])
+
       for (var i = 0; i < clus["projects"].length; i++) {
+
         let project = new Project(clus["projects"][i])
         cluster.add(project)
       }
-      clusterView.render();
-    });
+
+      this.$el.append(clusterView.render().$el);
+    }, this);
   }
 });
 
