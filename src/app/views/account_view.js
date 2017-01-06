@@ -1,13 +1,27 @@
 import Backbone from 'backbone';
-
+import $ from 'jquery';
+import _ from 'underscore';
+import ThumbnailView from './thumbnail_view';
 
 const AccountView = Backbone.View.extend({
-  initialize: function(){
-
+  initialize: function(options){
+    this.clusters = options.clusterCollections
   },
 
   render: function() {
-    console.log("AccountView rendered")
+    $('.btn-save').hide();
+    $('main').empty();
+    console.log('accountview model', this.clusters);
+    console.log("AccountView rendered");
+    this.renderClusters();
+    return this;
+  },
+
+  renderClusters: function() {
+    this.clusters.forEach( function(clus){
+      let thumbnailV = new ThumbnailView({model: clus})
+      this.$el.append(thumbnailV.render().$el);
+    }, this)
   }
 });
 

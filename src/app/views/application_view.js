@@ -2,12 +2,14 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import ImportView from './import_view';
+import AccountView from './account_view'
 
 
 
 const ApplicationView = Backbone.View.extend({
   initialize: function(){
     this.topNavT = _.template($('#top-nav-template').html())
+
   },
 
   render: function() {
@@ -26,13 +28,28 @@ const ApplicationView = Backbone.View.extend({
 
   events: {
     'click .btn-import': 'import'
+    // ,
+    // 'click .btn-save': 'save'
   },
 
-  import: function() {
-    // write code here that will call the API to authenticate user. or write that actual FUNCTION in the user model, but write the call to that here?
+  import: function(event) {
+    event.preventDefault();
+    // i thought i needed to call to the backend here. but instead i will do that when they login.
     console.log("import function called")
     let importV = new ImportView({el: $('main')});
+    console.log(this.model)
     importV.render();
+
+    this.listenTo(importV, 'clustersIncoming', this.save)
+  },
+
+  save: function(clusterCollections) {
+    // event.preventDefault();
+    console.log(clusterCollections)
+    console.log("save fx called")
+    let accountV = new AccountView({el: $('main'),
+                                    clusterCollections: clusterCollections});
+    accountV.render();
   }
 });
 
