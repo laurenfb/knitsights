@@ -30,7 +30,7 @@ const ApplicationView = Backbone.View.extend({
   import: function() {
     // write code here that will call the API to authenticate user. or write that actual FUNCTION in the user model, but write the call to that here?
     console.log("import function called")
-    let importV = new ImportView();
+    let importV = new ImportView({el: $('main')});
     importV.render();
   }
 });
