@@ -2,6 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import ImportView from './import_view';
+import AccountView from './account_view'
 
 
 
@@ -25,20 +26,26 @@ const ApplicationView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-import': 'import',
-    'click .btn-save': 'save'
+    'click .btn-import': 'import'
+    // ,
+    // 'click .btn-save': 'save'
   },
 
-  import: function() {
+  import: function(event) {
+    event.preventDefault();
     // i thought i needed to call to the backend here. but instead i will do that when they login.
     console.log("import function called")
     let importV = new ImportView({el: $('main')});
+    console.log(this.model)
     importV.render();
   },
 
   save: function(event) {
     event.preventDefault();
-    this.trigger('saveClicked', this)
+    console.log(this.model)
+    console.log("save fx called")
+    let accountV = new AccountView({el: $('main')});
+    accountV.render();
   }
 });
 

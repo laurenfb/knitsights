@@ -40,6 +40,9 @@ const ImportView = Backbone.View.extend({
   initialize: function(){
     $('.btn-import').hide();
     $('.btn-save').show();
+    // a list of all the cluster collections so that importview can send them to
+    // appview, which will in turn send them to accountview
+    this.clusterCollections = [];
   },
 
   render: function() {
@@ -50,26 +53,30 @@ const ImportView = Backbone.View.extend({
 
   renderClusters: function() {
     clusters.forEach( function(clus){
-      // grabbing this so i can make a special class in each div.
+      // grabbing this so i can make a special id in each div.
       let clusID = clus["projects"][0]["clusterID"]
-
       let cluster =  new Cluster(null, {name: clus["name"], id: clusID});
-
       let clusterView = new ClusterView({
         model: cluster
-        // ,el: $('main')
       });
-
-      console.log("cluster projects",clus["projects"])
-
       for (var i = 0; i < clus["projects"].length; i++) {
-
         let project = new Project(clus["projects"][i])
         cluster.add(project)
       }
-
+      // add cluster to instance var
+      this.clusterCollections.push(cluster)
+      // render cluster and append it to 'main'
       this.$el.append(clusterView.render().$el);
+
     }, this);
+  },
+
+  events: {
+    'click .btn-save': 'sendClusters'
+  },
+
+  sendClusters: function(){
+    this.trigger('clustersIncoming', this.clusterCollections)
   }
 });
 
