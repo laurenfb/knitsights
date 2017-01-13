@@ -1,22 +1,22 @@
 {
-  "name": "tic-tac-toe",
+  "name": "knitsights",
   "version": "1.0.0",
-  "description": "Tic-Tac-Toe game written in JavaScript and Backbone",
+  "description": "knitsights",
   "main": "./bin/app.bundle.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server",
     "test": "jasmine",
     "repl": "babel-node",
     "build": "webpack",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -o laurenfb"
   },
-  "author": "Ada Developers Academy <contact@adadevelopersacademy.org>",
+  "author": "Lauren F. Brink <laurenfriesbrink@gmail.com",
   "license": "MIT",
-  "repository": "AdaGold/tic-tac-toe",
+  "repository": "laurenfb/knitsights ",
   "bugs": {
-    "url": "https://github.com/AdaGold/tic-tac-toe/issues"
+    "url": "https://github.com/laurenfb/knitsights/issues"
   },
-  "homepage": "https://github.com/AdaGold/tic-tac-toe#readme",
+  "homepage": "https://github.com/laurenfb/knitsights#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
