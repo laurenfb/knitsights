@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server",
     "test": "jasmine",
-    "repl": "babel-node"
+    "repl": "babel-node",
+    "build": "webpack"
   },
   "author": "Ada Developers Academy <contact@adadevelopersacademy.org>",
   "license": "MIT",
