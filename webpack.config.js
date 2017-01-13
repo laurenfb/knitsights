@@ -18,7 +18,9 @@ var common = {
 };
 
 var production = {
-
+  output: {
+    publicPath: '/knitsights'
+  }
 };
 
 var development = {
