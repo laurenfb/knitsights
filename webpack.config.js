@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var DashboardPlugin = require('webpack-dashboard/plugin');
-var merge = require('weback-merge');
+var merge = require('webpack-merge');
 
 var common = {
   entry: ['babel-polyfill', './src/app.js'],
