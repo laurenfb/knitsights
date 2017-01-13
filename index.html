@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hi capstone</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <main class='row'>
+      <div class='row'>
+        <a class='button btn-import' href='#'>import</a>
+      </div>
+      <div class='row'>
+        <a class='button btn-save' href='#'>save</a>
+      </div>
+    </main>
+
+
+
+    <!-- Underscore Templates -->
+    <script type="text/template" id="top-nav-template">
+      <header>
+        <div class='row'>
+          <div id='logo-holder' class='medium-2 columns'><img src='assets/logo.png'/></div>
+          <h1 class='medium-6 columns'>knitsights</h1>
+          <nav class='medium-4 columns end'>
+            <ul>
+              <li>link to one thing | </li>
+              <li>link to another thing | </li>
+              <li>link to third thing</li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+    </script>
+
+    <script type="text/template" id="project-template">
+      <div>
+        <h4><%- name %></h4>
+        <img src='<%- photoURL %>' title='<%- name %> photo'\>
+        <p><%- timeInDays %> days</p>
+      </div>
+    </script>
+
+    <script type="text/template" id="cluster-template">
+      <section class="cluster medium-5 columns end cid<%- id %>">
+        <h4><%- name %></h4>
+      </section>
+    </script>
+
+    <script type="text/template" id="thumbnail-template">
+      <div>
+        <h4><%- name %></h4>
+        <img src='<%- photoURL %>' title='<%- name %> photo'\>
+        <p>average: <%- avgDays %> days</p>
+      </div>
+    </script>
+    <!-- thanks, Webpack! -->
+    <script src="app.bundle.js" charset="utf-8"></script>
+  </body>
+</html>
