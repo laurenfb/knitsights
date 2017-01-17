@@ -10,7 +10,7 @@
     "build": "webpack",
     "deploy": "gh-pages -d build"
   },
-  "author": "Lauren F. Brink <laurenfriesbrink@gmail.com",
+  "author": "Lauren F. Brink <laurenfriesbrink@gmail.com>",
   "license": "MIT",
   "repository": "laurenfb/knitsights ",
   "bugs": {

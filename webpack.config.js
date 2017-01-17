@@ -47,6 +47,6 @@ switch(buildTarget) {
     module.exports = merge(common, production);
     break;
   default:
-    module.exports = merge(common, production);
+    module.exports = merge(common, development);
     break;
 }
