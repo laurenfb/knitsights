@@ -1,16 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Noticia+Text');
+@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
 /* ---- global styling ---- */
+
+
+* {
+  font-family: 'Muli', sans-serif;
+}
+h1{
+  font-family: 'Noticia Text', serif;
+}
 
 img{
   border-radius: 50%;
 }
 
 header{
-  background-color: gray;
+  border-bottom: 2px grey solid;
   padding-top: 1%;
-  padding-bottom: 1%
+  padding-bottom: 1%;
+  /*position: fixed;*/
 }
 
 nav ul li{
+  /*font-family: 'Muli', sans-serif;*/
   list-style-type: none;
   display: inline;
 }
@@ -49,8 +63,9 @@ nav ul li{
   border: 1px solid black;
   padding: 1%;
   margin: 1%;
-  background-color: gold;
+  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
+  text-align: center;
 }
 
 /* ---- cluster styling on accountview ---- */
@@ -58,7 +73,7 @@ nav ul li{
   border: 1px solid black;
   padding: 1%;
   margin: 1%;
-  background-color: teal;
+  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
   text-align: center;
 }
