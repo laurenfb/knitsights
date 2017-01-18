@@ -9,7 +9,6 @@ import AccountView from './account_view'
 const ApplicationView = Backbone.View.extend({
   initialize: function(){
     this.topNavT = _.template($('#top-nav-template').html())
-
   },
 
   render: function() {

@@ -16,33 +16,49 @@ img{
   border-radius: 50%;
 }
 
+/* ---- header styling ---- */
+
 header{
   border-bottom: 2px grey solid;
   padding-top: 1%;
   padding-bottom: 1%;
 }
-
 nav ul li{
-  /*font-family: 'Muli', sans-serif;*/
   list-style-type: none;
   display: inline;
+}
+nav ul li a{
+  color: black;
+}
+nav ul li a:hover{
+  color: black;
+  background-color: rgba(210, 217, 215, 0.75)
+}
+
+#main-title{
+  padding-top: 2.5%;
 }
 
 /* ---- buttons ---- */
 
 #button-holder{
-  background-color: gold;
-  height: 100px
+  /*background-color: gold;*/
+  height: 100px;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 .btn-import-save{
-  background-color: red;
+  background-color: rgb(64, 64, 64);
+  /*color: black;*/
   font-weight: bold;
   display: inline-block;
-
+  padding: 1.5% 2% 1.5% 2%;
 }
 
 .btn-import-save:hover{
   background-color: black;
+  box-shadow: 1.5px 1.5px 1.5px grey;
 }
 
 /* ---- project styling ---- */
