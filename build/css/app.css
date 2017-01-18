@@ -5,7 +5,7 @@
 /* ---- global styling ---- */
 
 
-* {
+*,h2,h3,h4,h5,h6,p {
   font-family: 'Muli', sans-serif;
 }
 h1{
@@ -20,7 +20,6 @@ header{
   border-bottom: 2px grey solid;
   padding-top: 1%;
   padding-bottom: 1%;
-  /*position: fixed;*/
 }
 
 nav ul li{
@@ -30,17 +29,20 @@ nav ul li{
 }
 
 /* ---- buttons ---- */
-.btn-import, .btn-save{
+
+#button-holder{
+  background-color: gold;
+  height: 100px
+}
+.btn-import-save{
   background-color: red;
   font-weight: bold;
+  display: inline-block;
+
 }
 
-.btn-import:hover, .btn-save:hover{
+.btn-import-save:hover{
   background-color: black;
-}
-
-.btn-save{
-  display: none;
 }
 
 /* ---- project styling ---- */

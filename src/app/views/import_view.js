@@ -38,8 +38,8 @@ var clusters = [{ "name": "sweaters", "projects": [
 
 const ImportView = Backbone.View.extend({
   initialize: function(){
-    $('.btn-import').hide();
-    $('.btn-save').show();
+    $('.btn-import-save').empty();
+    $('.btn-import-save').append("save");
     // a list of all the cluster collections so that importview can send them to
     // appview, which will in turn send them to accountview
     this.clusterCollections = [];
@@ -72,10 +72,11 @@ const ImportView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-save': 'sendClusters'
+    'click .btn-import-save': 'sendClusters'
   },
 
   sendClusters: function(){
+    $('.btn-import-save').hide()
     this.trigger('clustersIncoming', this.clusterCollections)
   }
 });

@@ -27,7 +27,7 @@ const ApplicationView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-import': 'import'
+    'click .btn-import-save': 'import'
     // ,
     // 'click .btn-save': 'save'
   },
@@ -37,7 +37,6 @@ const ApplicationView = Backbone.View.extend({
     // i thought i needed to call to the backend here. but instead i will do that when they login.
     console.log("import function called")
     let importV = new ImportView({el: $('main')});
-    console.log(this.model)
     importV.render();
 
     this.listenTo(importV, 'clustersIncoming', this.save)
