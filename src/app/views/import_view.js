@@ -39,9 +39,7 @@ const ImportView = Backbone.View.extend({
           });
           // when this functionality was in here instead of broken out into a separate function, it did not go well.
           self.putProjectsInClusters(cluster, clus["projects"])
-
-          // add cluster to instance var this.clusterCollections
-          self.clusterCollections.push(cluster)
+          
           // render cluster and append it to 'main'
           self.$el.append(clusterView.render().$el);
         } // end of if statement
@@ -63,6 +61,7 @@ const ImportView = Backbone.View.extend({
       let project = new Project(listOfProjects[i])
       cluster.add(project)
     }
+    this.clusterCollections.push(cluster)
     return cluster
   }
 });
