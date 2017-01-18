@@ -1,15 +1,12 @@
 import Backbone from 'backbone';
 
 const Project = Backbone.Model.extend({
-  url: '',
-  parse: function(){},
-  toJSON: function(){},
 
   initialize: function(options){
-    this.set("name", options.name)
-    this.set("clusterID", options.clusterID);
-    this.set("photoURL", options.photoURL);
-    this.set("timeInDays", options.timeInDays)
+    this.set("name", options.name.toLowerCase())
+    this.set("clusterID", options.cluster_id);
+    this.set("photoURL", options.photo_url);
+    this.set("timeInDays", options.time_in_days)
 
   }
 });
