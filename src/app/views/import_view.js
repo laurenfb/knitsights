@@ -47,6 +47,7 @@ const ImportView = Backbone.View.extend({
 
   render: function() {
     console.log("ImportView rendered")
+    console.log(this.model.url)
     this.renderClusters();
     return this;
   },

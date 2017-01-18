@@ -1,7 +1,8 @@
 import Backbone from 'backbone';
+import Vars from '../vars'
 
 const User = Backbone.Model.extend({
-  url: 'this is the url for my flask API',
+  url: 'http://' + Vars["username"] + ":" + Vars["password"] + '@knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
   parse: function(){
     // code here to pull user info from the flask API
   },

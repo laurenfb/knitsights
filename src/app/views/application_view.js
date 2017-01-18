@@ -3,7 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import ImportView from './import_view';
 import AccountView from './account_view'
-
+import User from '../models/user'
 
 
 const ApplicationView = Backbone.View.extend({
@@ -35,7 +35,10 @@ const ApplicationView = Backbone.View.extend({
     event.preventDefault();
     // i thought i needed to call to the backend here. but instead i will do that when they login.
     console.log("import function called")
-    let importV = new ImportView({el: $('main')});
+    let importV = new ImportView({
+      el: $('main'),
+      model: new User({name: "laureneliz"})
+    });
     importV.render();
 
     this.listenTo(importV, 'clustersIncoming', this.save)
