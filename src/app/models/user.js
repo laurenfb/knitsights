@@ -5,7 +5,7 @@ const User = Backbone.Model.extend({
 
   // url: 'https://' + VARS["username"] + ":" + VARS["password"] +'@ localhost:8000/api/get_projects/laureneliz',
 
-  url:  'http://localhost:8000/api/get_projects/laureneliz',
+  url:  'http://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
 
   parse: function(){
 
