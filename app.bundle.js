@@ -22133,9 +22133,12 @@
 	  initialize: function initialize(options) {
 	    var name = options.name.toLowerCase();
 	    if (name.length >= 17) {
-	      name = name.slice(0, 13) + "...";
+	      shortName = shortname.slice(0, 13) + "...";
+	    } else {
+	      shortName = name;
 	    }
 	    this.set("name", name);
+	    this.set("shortName", shortName);
 	    this.set("clusterID", options.cluster_id);
 	    this.set("photoURL", options.photo_url);
 	    this.set("timeInDays", options.time_in_days);
@@ -22799,7 +22802,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var User = _backbone2.default.Model.extend({
-	  url: 'https://localhost:8000/api/get_projects/laureneliz',
+	  url: 'https://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
 
 	  parse: function parse() {},
 	  toJSON: function toJSON() {},
