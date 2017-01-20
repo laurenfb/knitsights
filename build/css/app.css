@@ -69,11 +69,13 @@ nav ul li a:hover{
   margin: 1%;
   text-align: center;
   border: 1px solid black;
-  max-width: 300px;
+  width: 150px;
+  /*height: 150px;*/
+  word-wrap: break-word;
 }
 
-.project img{
-  max-width: 200px;
+.project img, .thumbnail img{
+  max-width: 75px;
 }
 
 /* ---- cluster styling on importview ---- */
@@ -85,6 +87,7 @@ nav ul li a:hover{
   height: 100%;
   text-align: center;
 }
+
 
 .spinner{
   margin-top: 7%;

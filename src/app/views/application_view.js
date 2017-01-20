@@ -12,7 +12,6 @@ const ApplicationView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ApplicationView rendered");
     $('body').prepend(this.topNavT);
     // check to see if import has happened; decide what to render based on that
     // checkImport();
@@ -26,14 +25,11 @@ const ApplicationView = Backbone.View.extend({
 
   events: {
     'click .btn-import-save': 'import'
-    // ,
-    // 'click .btn-save': 'save'
   },
 
   import: function(event) {
     event.preventDefault();
     // i thought i needed to call to the backend here. but instead i will do that when they login.
-    console.log("import function called")
     let importV = new ImportView({
       el: $('main'),
       model: new User({name: "laureneliz"})
