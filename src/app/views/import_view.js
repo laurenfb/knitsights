@@ -4,6 +4,30 @@ import $ from 'jquery';
 import Project from '../models/project'
 import Cluster from '../collections/cluster'
 import ClusterView from './cluster_view'
+import Spinner from 'spin.js'
+
+var opts = {
+  lines: 13 // The number of lines to draw
+, length: 28 // The length of each line
+, width: 14 // The line thickness
+, radius: 42 // The radius of the inner circle
+, scale: 1 // Scales overall size of the spinner
+, corners: 1 // Corner roundness (0..1)
+, color: '#000' // #rgb or #rrggbb or array of colors
+, opacity: 0.25 // Opacity of the lines
+, rotate: 0 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1 // Rounds per second
+, trail: 60 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '50%' // Top position relative to parent
+, left: '50%' // Left position relative to parent
+, shadow: false // Whether to render a shadow
+, hwaccel: false // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+}
 
 const ImportView = Backbone.View.extend({
   initialize: function(){
@@ -15,14 +39,17 @@ const ImportView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ImportView rendered")
     this.renderClusters();
     return this;
   },
 
   renderClusters: function() {
     // using these vars because the .fetch.done() doesn't let me use a foreach as nicely as an anon fx, so 'this' is not available inside.
-    var self = this
+    var self = this;
+    // make spinner
+    // can't use jQuery here unless i get a special plugin. maybe later because it WORKS now.
+    var target = document.getElementById('spinner-holder');
+    var spin = new Spinner(opts).spin(target);
 
     this.model.fetch().done(
       function(response){
@@ -30,7 +57,7 @@ const ImportView = Backbone.View.extend({
         let clus = response["clusters"][i];
         // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
         if (clus["projects"].length != 0) {
-          let clusID = clus["projects"][0]["cluster_id"]
+          let clusID = clus["projects"][0]["cluster_id"];
           let cluster =  new Cluster(null,
                                     {name: clus["name"],
                                     id: clusID});
@@ -43,8 +70,10 @@ const ImportView = Backbone.View.extend({
           self.$el.append(clusterView.render().$el);
         } // end of if statement
       } // end of for loop
+      spin.stop()
     } // end of anon fx with arg response
-  )}, // end of done() and renderClusters fx
+  )// end of done()
+  }, //  renderClusters fx
 
   events: {
     'click .btn-import-save': 'sendClusters'
