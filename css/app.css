@@ -1,32 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Noticia+Text');
+@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
 /* ---- global styling ---- */
+
+
+*,h2,h3,h4,h5,h6,p {
+  font-family: 'Muli', sans-serif;
+}
+h1{
+  font-family: 'Noticia Text', serif;
+}
 
 img{
   border-radius: 50%;
 }
 
-header{
-  background-color: gray;
-  padding-top: 1%;
-  padding-bottom: 1%
-}
+/* ---- header styling ---- */
 
+header{
+  border-bottom: 2px grey solid;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
 nav ul li{
   list-style-type: none;
   display: inline;
 }
+nav ul li a{
+  color: black;
+}
+nav ul li a:hover{
+  color: black;
+  background-color: rgba(210, 217, 215, 0.75)
+}
+
+#main-title{
+  padding-top: 2.5%;
+}
 
 /* ---- buttons ---- */
-.btn-import, .btn-save{
-  background-color: red;
+
+#button-holder{
+  /*background-color: gold;*/
+  height: 100px;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.btn-import-save{
+  background-color: rgb(64, 64, 64);
+  /*color: black;*/
   font-weight: bold;
+  display: inline-block;
+  padding: 1.5% 2% 1.5% 2%;
 }
 
-.btn-import:hover, .btn-save:hover{
+.btn-import-save:hover{
   background-color: black;
-}
-
-.btn-save{
-  display: none;
+  box-shadow: 1.5px 1.5px 1.5px grey;
 }
 
 /* ---- project styling ---- */
@@ -37,11 +69,13 @@ nav ul li{
   margin: 1%;
   text-align: center;
   border: 1px solid black;
-  max-width: 300px;
+  width: 150px;
+  /*height: 150px;*/
+  word-wrap: break-word;
 }
 
-.project img{
-  max-width: 200px;
+.project img, .thumbnail img{
+  max-width: 75px;
 }
 
 /* ---- cluster styling on importview ---- */
@@ -49,8 +83,14 @@ nav ul li{
   border: 1px solid black;
   padding: 1%;
   margin: 1%;
-  background-color: gold;
+  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
+  text-align: center;
+}
+
+
+.spinner{
+  margin-top: 7%;
 }
 
 /* ---- cluster styling on accountview ---- */
@@ -58,7 +98,7 @@ nav ul li{
   border: 1px solid black;
   padding: 1%;
   margin: 1%;
-  background-color: teal;
+  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
   text-align: center;
 }
