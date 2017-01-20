@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 
 const User = Backbone.Model.extend({
-  url:  'https://localhost:8000/api/get_projects/laureneliz',
+  url:  'https://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
 
   parse: function(){
 
