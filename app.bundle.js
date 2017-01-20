@@ -22133,7 +22133,7 @@
 	  initialize: function initialize(options) {
 	    var name = options.name.toLowerCase();
 	    if (name.length >= 17) {
-	      shortName = shortname.slice(0, 13) + "...";
+	      shortName = name.slice(0, 13) + "...";
 	    } else {
 	      shortName = name;
 	    }
