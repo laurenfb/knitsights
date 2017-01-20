@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
-    "gh-pages": "^0.12.0"
+    "gh-pages": "^0.12.0",
+    "spin.js": "^2.3.2"
   }
 }
