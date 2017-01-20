@@ -50,7 +50,7 @@ const ImportView = Backbone.View.extend({
     // can't use jQuery here unless i get a special plugin. maybe later because it WORKS now.
     var target = document.getElementById('spinner-holder');
     var spin = new Spinner(opts).spin(target);
-
+    $('#message').html("fetching your projects from ravelry. this may take a few moments.")
     this.model.fetch().done(
       function(response){
       for (var i = 0; i < response["clusters"].length; i++) {
@@ -70,6 +70,7 @@ const ImportView = Backbone.View.extend({
           self.$el.append(clusterView.render().$el);
         } // end of if statement
       } // end of for loop
+      $('#message').empty()
       spin.stop()
     } // end of anon fx with arg response
   )// end of done()

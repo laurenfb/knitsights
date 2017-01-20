@@ -86,6 +86,10 @@ nav ul li a:hover{
   text-align: center;
 }
 
+.spinner{
+  margin-top: 7%;
+}
+
 /* ---- cluster styling on accountview ---- */
 .thumbnail{
   border: 1px solid black;
