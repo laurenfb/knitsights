@@ -22802,7 +22802,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var User = _backbone2.default.Model.extend({
-	  url: 'http://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
+	  url: 'https://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
 
 	  parse: function parse() {},
 	  toJSON: function toJSON() {},
