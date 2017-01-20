@@ -22799,7 +22799,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var User = _backbone2.default.Model.extend({
-	  url: 'http://localhost:8000/api/get_projects/laureneliz',
+	  url: 'https://localhost:8000/api/get_projects/laureneliz',
 
 	  parse: function parse() {},
 	  toJSON: function toJSON() {},
