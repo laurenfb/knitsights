@@ -96,9 +96,14 @@ nav ul li a:hover{
 /* ---- cluster styling on accountview ---- */
 .thumbnail{
   border: 1px solid black;
-  padding: 1%;
+  padding: 0.7%;
   margin: 1%;
   background-color: rgba(210, 217, 215, 0.34);
-  height: 100%;
+  height: 250px;
+  width: 250px;
   text-align: center;
+}
+
+.thumbnail h4, .thumbnail p, .thumbnail img{
+  margin-top: 5%;
 }

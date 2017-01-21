@@ -5,7 +5,9 @@ const Project = Backbone.Model.extend({
   initialize: function(options){
     var name = options.name.toLowerCase();
     if (name.length >= 17) {
-      name = name.slice(0,13) + "...";
+      var shortName = name.slice(0,13) + "...";
+    } else {
+      var shortName = name;
     }
     this.set("name", name)
     this.set("clusterID", options.cluster_id);
