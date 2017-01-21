@@ -20,13 +20,11 @@ const ImportView = Backbone.View.extend({
   },
 
   render: function() {
-    this.renderClusters();
+    this.fetchData();
     return this;
   },
 
-  renderClusters: function() {
-    // THIS FUNCTION IS TOOOOO LONG AND IT SHOULD BE REFACTORRREDDDDD.
-
+  fetchData: function() {
     // make spinner
     // can't use jQuery here unless i get a special plugin. maybe later because it WORKS now.
     var target = document.getElementById('spinner-holder');
@@ -35,8 +33,17 @@ const ImportView = Backbone.View.extend({
 
     // using these vars because the .fetch.done() doesn't let me use a foreach as nicely as an anon fx, so 'this' is not available inside.
     var self = this;
-
     this.model.fetch().done( function(response){
+      self.renderClusters(response, self);
+      $('#message').empty()
+      spin.stop()
+    }).fail( function(response) {
+      spin.stop()
+      self.onFailure(response, self);
+    }) // end of anon fx with arg response// end of done()
+  },
+
+  renderClusters: function(response, self) {
       for (var i = 0; i < response["clusters"].length; i++) {
         let clus = response["clusters"][i];
         // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
@@ -54,10 +61,8 @@ const ImportView = Backbone.View.extend({
           self.$el.append(clusterView.render().$el);
         } // end of if statement
       } // end of for loop
-      $('#message').empty()
-      spin.stop()
-    } // end of anon fx with arg response
-  )// end of done()
+
+
   }, //  renderClusters fx
 
   events: {
@@ -76,6 +81,11 @@ const ImportView = Backbone.View.extend({
     }
     this.clusterCollections.push(cluster)
     return cluster
+  },
+
+  onFailure: function(response, self) {
+    $('#message').empty()
+    $('#message').append('looks like we ran into an error. please refresh the page and try again!')
   }
 });
 
