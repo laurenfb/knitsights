@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-
+    <div id="background-cover">
+    </div>
     <main>
       <div id='button-holder'>
         <a class='button btn-import-save' href='#'>import</a>
@@ -17,6 +18,7 @@
         <section id='spinner-holder'>
         </section>
       </div>
+
     </main>
 
 
@@ -62,9 +64,7 @@
     </script>
 
     <script type="text/template" id="edit-template">
-      <div id="background-cover">
-        <section id="edit-cluster"></section>
-      </div>
+        <section id="edit-cluster"><h4><%- name %></h4></section>
     </script>
     <!-- thanks, Webpack! -->
     <script src="app.bundle.js" charset="utf-8"></script>
