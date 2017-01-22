@@ -24,7 +24,8 @@ const ApplicationView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-import-save': 'import'
+    'click .btn-import-save': 'import',
+    'click #background-cover': 'hideEditView'
   },
 
   import: function(event) {
@@ -43,6 +44,11 @@ const ApplicationView = Backbone.View.extend({
     let accountV = new AccountView({el: $('main'),
                                     clusterCollections: clusterCollections});
     accountV.render();
+  },
+
+  hideEditView: function() {
+    $('#edit-cluster').remove()
+    $('#background-cover').hide()
   }
 });
 

@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
+import EditView from './edit_view'
 
 const ProjectView = Backbone.View.extend({
   className: "project",
@@ -21,7 +22,11 @@ const ProjectView = Backbone.View.extend({
   },
 
   makeEditView: function(e){
-    alert(this.model.get("name"))
+    console.log('we are making an editview')
+    var editV = new EditView({
+      model: this.model
+    });
+    editV.render()
   }
 });
 
