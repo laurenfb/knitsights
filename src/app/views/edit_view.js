@@ -4,15 +4,18 @@ import $ from 'jquery';
 
 
 const EditView = Backbone.View.extend({
-  initialize: function() {
+  initialize: function(options) {
     this.editT = _.template($('#edit-template').html());
+    this.user = options.user;
   },
 
   render: function() {
     $('#background-cover').show()
     $('main').prepend(this.editT({name: this.model.get("name")}))
-    console.log('editview rendering')
-    console.log(this.model)
+    var clusters = this.user.get("clusters")
+    for (var i = 0; i < clusters.length; i++) {
+      console.log(clusters[i].name)
+    }
     return this;
   }
 });

@@ -8,10 +8,10 @@ const ProjectView = Backbone.View.extend({
 
   initialize: function(options){
     this.projectT = _.template($('#project-template').html());
+    this.user = options.user
   },
 
   render: function() {
-    // console.log("projectview created", this.model.get("name"))
     this.$el.append(this.projectT(this.model.attributes))
     this.delegateEvents(this.events);
     return this;
@@ -22,9 +22,9 @@ const ProjectView = Backbone.View.extend({
   },
 
   makeEditView: function(e){
-    console.log('we are making an editview')
     var editV = new EditView({
-      model: this.model
+      model: this.model,
+      user: this.user
     });
     editV.render()
   }

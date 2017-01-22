@@ -9,7 +9,8 @@ const User = Backbone.Model.extend({
   initialize: function(options) {
     this.set("name", options.name);
     this.set("photoURL", options.photo_url);
-    this.set("imported", options.imported)
+    this.set("imported", options.imported);
+    this.set("clusters", [])
   }
 
 });
