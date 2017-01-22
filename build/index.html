@@ -66,17 +66,12 @@
     <script type="text/template" id="edit-template">
         <section id="edit-cluster">
           <h4><%- name %></h4>
-          <ul class='dropdown menu vertical' data-dropdown-menu>
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
-            <li><a href="#">Item 4</a></li>
-          </ul>
+          <ul class='dropdown menu vertical' id='category-dropdown'></ul>
         </section>
     </script>
 
     <script type="text/template" id="dropdown-entry-template">
-      <h1>hi</h1>
+      <li class="category"><%- categoryName %></li>
     </script>
     <!-- thanks, Webpack! -->
     <script src="app.bundle.js" charset="utf-8"></script>

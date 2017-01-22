@@ -109,7 +109,7 @@ nav ul li a:hover{
 /* ---- editview, let's make this happen ---- */
 
 #background-cover {
-  background-color: rgb(172, 122, 200);
+  background-color: rgba(232, 217, 241, 0.38);
   position: fixed;
   top: 0;
   left: 0;
@@ -120,9 +120,12 @@ nav ul li a:hover{
 }
 
 #edit-cluster{
+  margin-top: 20vh;
+  margin-left: 40vh;
   z-index: 10000;
   background-color: gold;
-  position: absolute;
+  position: fixed;
+  padding: 1%;
 }
 
 #edit-cluster h4{

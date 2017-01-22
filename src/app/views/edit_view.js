@@ -13,10 +13,16 @@ const EditView = Backbone.View.extend({
   render: function() {
     $('#background-cover').show()
     $('main').prepend(this.editT({name: this.model.get("name")}))
+
     var clusters = this.user.get("clusters")
+
+    var self = this;
     for (var i = 0; i < clusters.length; i++) {
-      console.log(clusters[i].name)
-    }
+      $('#category-dropdown').append(
+        self.dropdownEntryT({
+          categoryName: clusters[i].name
+        }));
+    };
     return this;
   }
 });
