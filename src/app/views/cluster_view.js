@@ -21,16 +21,6 @@ const ClusterView = Backbone.View.extend({
     }, this);
     // this.delegateEvents(this.events);
     return this;
-  },
-
-  events: {
-    'click .cluster': 'sayHi'
-  },
-
-  sayHi: function(event) {
-    this.model.calcAverageDays();
-    event.stopPropagation();
-    // this.model.calcAverageDays();
   }
 });
 

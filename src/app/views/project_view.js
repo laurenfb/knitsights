@@ -14,6 +14,14 @@ const ProjectView = Backbone.View.extend({
     this.$el.append(this.projectT(this.model.attributes))
     this.delegateEvents(this.events);
     return this;
+  },
+
+  events: {
+    'click' : 'makeEditView'
+  },
+
+  makeEditView: function(e){
+    alert(this.model.get("name"))
   }
 });
 

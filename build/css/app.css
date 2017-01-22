@@ -88,7 +88,6 @@ nav ul li a:hover{
   text-align: center;
 }
 
-
 .spinner{
   margin-top: 7%;
 }
@@ -106,4 +105,17 @@ nav ul li a:hover{
 
 .thumbnail h4, .thumbnail p, .thumbnail img{
   margin-top: 5%;
+}
+
+/* ---- editview, let's make this happen ---- */
+
+#background-cover {
+  background-color: rgba(56,0,0,0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  display: none;
 }

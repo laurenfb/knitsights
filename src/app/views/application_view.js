@@ -40,9 +40,6 @@ const ApplicationView = Backbone.View.extend({
   },
 
   save: function(clusterCollections) {
-    // event.preventDefault();
-    console.log(clusterCollections)
-    console.log("save fx called")
     let accountV = new AccountView({el: $('main'),
                                     clusterCollections: clusterCollections});
     accountV.render();
