@@ -6,6 +6,7 @@ import $ from 'jquery';
 const EditView = Backbone.View.extend({
   initialize: function(options) {
     this.editT = _.template($('#edit-template').html());
+    this.dropdownEntryT = _.template($('#dropdown-entry-template').html())
     this.user = options.user;
   },
 
