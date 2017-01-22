@@ -11,8 +11,6 @@ const ThumbnailView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("ThumbnailClusterView rendered")
-    console.log(this.$el)
     this.$el.append(this.thumbnailT(
       {model: this.model,
         photoURL: this.getPhoto(),
@@ -22,7 +20,6 @@ const ThumbnailView = Backbone.View.extend({
   },
 
   getPhoto: function(){
-    console.log(this.model)
     return this.model.getRandomPhoto();
   }
 });
