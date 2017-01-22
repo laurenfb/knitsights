@@ -66,6 +66,11 @@
     <script type="text/template" id="edit-template">
         <section id="edit-cluster">
           <h4><%- name %></h4>
+          <p>current category: <%- clusterName %></p>
+
+          <a class='button edit-row change-cluster'>change category</a>
+          <a class='button edit-row remove-project'>remove project</a>
+
           <ul class='dropdown menu vertical' id='category-dropdown'></ul>
         </section>
     </script>

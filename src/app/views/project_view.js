@@ -8,7 +8,8 @@ const ProjectView = Backbone.View.extend({
 
   initialize: function(options){
     this.projectT = _.template($('#project-template').html());
-    this.user = options.user
+    this.user = options.user;
+    this.cluster = options.cluster;
   },
 
   render: function() {
@@ -22,9 +23,11 @@ const ProjectView = Backbone.View.extend({
   },
 
   makeEditView: function(e){
+    console.log("new editview,", this.cluster.name)
     var editV = new EditView({
       model: this.model,
-      user: this.user
+      user: this.user,
+      clusterName: this.cluster.name
     });
     editV.render()
   }

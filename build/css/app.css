@@ -125,9 +125,26 @@ nav ul li a:hover{
   z-index: 10000;
   background-color: gold;
   position: fixed;
-  padding: 1%;
+  padding: 3%;
+  width: 300px;
+  height: 300px;
+  text-align: center;
 }
 
 #edit-cluster h4{
   /*font-size: 20em;*/
 }
+
+#category-dropdown{
+  display: none;
+}
+
+#category-dropdown li:hover{
+  background-color: lightgreen;
+}
+
+/*.edit-row{
+  display: inline;
+  word-wrap: break-word;
+  width: 30%;
+}*/

@@ -19,7 +19,8 @@ const ClusterView = Backbone.View.extend({
     this.model.forEach(function(project) {
       let projectView = new ProjectView({
         model: project,
-        user: this.user
+        user: this.user,
+        cluster: this.model
       })
       cluster.append(projectView.render().$el);
     }, this);
