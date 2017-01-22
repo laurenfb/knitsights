@@ -6,7 +6,7 @@ import Cluster from '../collections/cluster'
 import ClusterView from './cluster_view'
 import Spinner from 'spin.js'
 
-var opts = {
+var SPINNER_OPTIONS = {
 lines:13,length:28,width:14,radius:42,scale:1,corners:1,color:'#000',opacity:0.25,rotate:0,direction:1,speed:1,trail:60,fps:20,zIndex:2e9,className:'spinner',top:'50%',left:'50%',shadow:false,hwaccel:false,position:'relative'
 }
 
@@ -28,7 +28,7 @@ const ImportView = Backbone.View.extend({
     // make spinner
     // can't use jQuery here unless i get a special plugin. maybe later because it WORKS now.
     var target = document.getElementById('spinner-holder');
-    var spin = new Spinner(opts).spin(target);
+    var spin = new Spinner(SPINNER_OPTIONS).spin(target);
     $('#message').html("fetching your projects from ravelry. this may take a few moments.")
 
     // using these vars because the .fetch.done() doesn't let me use a foreach as nicely as an anon fx, so 'this' is not available inside.
