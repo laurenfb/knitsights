@@ -9,6 +9,8 @@ const Project = Backbone.Model.extend({
     } else {
       var shortName = name;
     }
+
+    this.set("id", options.id);
     this.set("name", name);
     this.set("shortName", shortName);
     this.set("clusterID", options.cluster_id);
