@@ -120,8 +120,8 @@ nav ul li a:hover{
 }
 
 #edit-cluster{
-  margin-top: 20vh;
-  margin-left: 40vh;
+  margin-top: 10vmin;
+  margin-left: 20vmin;
   z-index: 10000;
   background-color: gold;
   position: fixed;
@@ -138,14 +138,14 @@ nav ul li a:hover{
 #category-dropdown{
   display: none;
   z-index: 10001;
+  background-color: white;
+  border: 2px black solid;
 }
 
-#category-dropdown li:hover{
+.category:nth-child(even){
+  background-color: lightgray;
+}
+
+.category:hover{
   background-color: lightgreen;
 }
-
-/*.edit-row{
-  display: inline;
-  word-wrap: break-word;
-  width: 30%;
-}*/

@@ -12,14 +12,13 @@
     <div id="background-cover">
     </div>
     <main>
+      <div id='edit-holder'></div>
       <div id='button-holder'>
         <a class='button btn-import-save' href='#'>import</a>
         <p id='message'></p>
         <section id='spinner-holder'>
         </section>
       </div>
-      <div id='edit-holder'></div>
-
     </main>
 
 
@@ -68,16 +67,17 @@
         <section id="edit-cluster">
           <h4><%- name %></h4>
           <p>current category: <%- clusterName %></p>
-
-          <a class='button edit-row change-cluster'>change category</a>
-          <a class='button edit-row remove-project'>remove project</a>
-
           <ul class='dropdown menu vertical' id='category-dropdown'></ul>
+          <div class='edit-buttons'>
+            <a class='button change-cluster'>change category</a>
+            <a class='button remove-project'>remove project</a>
+          </div>
+
         </section>
     </script>
 
     <script type="text/template" id="dropdown-entry-template">
-      <li class="category"><%- categoryName %></li>
+      <li class="category <%- categoryName %>"><%- categoryName %></li>
     </script>
     <!-- thanks, Webpack! -->
     <script src="app.bundle.js" charset="utf-8"></script>
