@@ -1,7 +1,6 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import EditView from './edit_view'
 
 const ProjectView = Backbone.View.extend({
   className: "project",
@@ -19,17 +18,13 @@ const ProjectView = Backbone.View.extend({
   },
 
   events: {
-    'click' : 'makeEditView'
+    'click' : 'popluateEditView'
   },
 
-  makeEditView: function(e){
-    var editV = new EditView({
-      el: $('#edit-holder'),
-      model: this.model,
-      user: this.user,
-      clusterName: this.cluster.name
-    });
-    editV.render()
+  popluateEditView: function(e){
+    console.log(this.model);
+    console.log(this.user);
+    this.trigger('projectEdit', this.model)
   }
 });
 

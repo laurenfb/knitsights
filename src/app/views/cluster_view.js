@@ -23,9 +23,15 @@ const ClusterView = Backbone.View.extend({
         cluster: this.model
       })
       cluster.append(projectView.render().$el);
+      this.listenTo(projectView, 'projectEdit', this.sendProject);
     }, this);
-    // this.delegateEvents(this.events);
+
     return this;
+  },
+
+  sendProject: function(project) {
+    // send the project to the user to populate the user's editview.
+    this.user.populateView(project);
   }
 });
 

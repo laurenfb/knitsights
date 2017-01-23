@@ -8,15 +8,17 @@ const EditView = Backbone.View.extend({
     this.editT = _.template($('#edit-template').html());
     this.dropdownEntryT = _.template($('#dropdown-entry-template').html())
     this.user = options.user;
-    this.clusterName = options.clusterName;
+    this.project = null;
   },
 
-  render: function() {
-    // console.log(this.$el)
+  render: function(project) {
+    this.project = project;
+    console.log("in the editview, here's the project!", this.project)
+
     $('#background-cover').show()
     this.$el.prepend(this.editT({
-      name: this.model.get("name"),
-      clusterName: this.clusterName
+      name: project.get("name"),
+      clusterName: project.collection.name
     }))
 
     var clusters = this.user.get("clusters")
