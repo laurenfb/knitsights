@@ -47,7 +47,7 @@ const ApplicationView = Backbone.View.extend({
   },
 
   hideEditView: function() {
-    $('#edit-cluster').remove()
+    $('#edit-holder').empty()
     $('#background-cover').hide()
   }
 });

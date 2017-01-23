@@ -34,20 +34,40 @@ const EditView = Backbone.View.extend({
   },
 
   events: {
-    'click': 'changeCluster',
+    'click .change-cluster': 'changeCluster',
     'click .category': 'changeCategory'
   },
 
   changeCluster: function(event){
+    // event.stopPropagation()
+    console.log('clicked the modal')
     $('.edit-buttons').toggle();
     $('#category-dropdown').toggle();
   },
 
   changeCategory: function(event){
-
-    if (window.confirm("change this?")) {
-      console.log("hi")
+    this.changeCluster();
+    let newID = event.target.id;
+    let clusterNames = [];
+    if (window.confirm("change this project to " + newID + "?")) {
+      event.preventDefault();
+      // grab the new collection
+      let newCollection = this.findNewCluster(newID);
+      // remove project from the old collection
+      this.project.collection.remove(this.project);
+      // add it to the new collection
+      newCollection.add(this.project);
+      // console.log("new collection ", this.project.collection);
     }
+  },
+
+  findNewCluster: function(nameOfCluster) {
+    let clusters = this.user.get("clusters");
+    for (var i = 0; i < clusters.length; i++) {
+      if (clusters[i].name == nameOfCluster) {
+        return clusters[i];
+      };
+    };
   }
 });
 
