@@ -32,12 +32,20 @@ const EditView = Backbone.View.extend({
   },
 
   events: {
-    'click': 'changeCluster'
+    'click': 'changeCluster',
+    'click .category': 'changeCategory'
   },
 
-  changeCluster: function(){
-    console.log('hi!')
-    $('#category-dropdown').show()
+  changeCluster: function(event){
+    $('.edit-buttons').toggle();
+    $('#category-dropdown').toggle();
+  },
+
+  changeCategory: function(event){
+
+    if (window.confirm("change this?")) {
+      console.log("hi")
+    }
   }
 });
 
