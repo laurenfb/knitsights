@@ -12,6 +12,7 @@ const EditView = Backbone.View.extend({
   },
 
   render: function() {
+    // console.log(this.$el)
     $('#background-cover').show()
     $('main').prepend(this.editT({
       name: this.model.get("name"),
@@ -28,6 +29,15 @@ const EditView = Backbone.View.extend({
         }));
     };
     return this;
+  },
+
+  events: {
+    'click': 'changeCluster'
+  },
+
+  changeCluster: function(){
+    console.log('hi!')
+    $('#category-dropdown').show()
   }
 });
 

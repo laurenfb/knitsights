@@ -137,6 +137,7 @@ nav ul li a:hover{
 
 #category-dropdown{
   display: none;
+  z-index: 10001;
 }
 
 #category-dropdown li:hover{

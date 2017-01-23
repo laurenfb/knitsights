@@ -29,7 +29,7 @@ const ProjectView = Backbone.View.extend({
       user: this.user,
       clusterName: this.cluster.name
     });
-    editV.render()
+    $('#edit-holder').append(editV.render())
   }
 });
 
