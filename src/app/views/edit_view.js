@@ -14,7 +14,7 @@ const EditView = Backbone.View.extend({
   render: function() {
     // console.log(this.$el)
     $('#background-cover').show()
-    $('main').prepend(this.editT({
+    this.$el.prepend(this.editT({
       name: this.model.get("name"),
       clusterName: this.clusterName
     }))

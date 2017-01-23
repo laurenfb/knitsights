@@ -23,13 +23,13 @@ const ProjectView = Backbone.View.extend({
   },
 
   makeEditView: function(e){
-    console.log("new editview,", this.cluster.name)
     var editV = new EditView({
+      el: $('#edit-holder'),
       model: this.model,
       user: this.user,
       clusterName: this.cluster.name
     });
-    $('#edit-holder').append(editV.render())
+    editV.render()
   }
 });
 
