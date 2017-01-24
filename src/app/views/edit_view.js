@@ -34,7 +34,7 @@ const EditView = Backbone.View.extend({
   },
 
   events: {
-    'click .change-cluster': 'changeCluster',
+    'click': 'changeCluster',
     'click .category': 'changeCategory',
     'click .remove-project': 'archiveProject'
   },
@@ -78,7 +78,8 @@ const EditView = Backbone.View.extend({
     };
   },
 
-  archiveProject: function(){
+  archiveProject: function(event){
+    event.stopPropagation();
     // destroying the project straight-up does NOT work. the request doesn't go along nicely for the backend to get it. sooooo we're saving it.
     if (window.confirm("delete this project?")) {
       this.project.collection.remove(this.project);
