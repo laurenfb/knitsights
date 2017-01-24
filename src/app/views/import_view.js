@@ -77,6 +77,7 @@ const ImportView = Backbone.View.extend({
 
   sendClusters: function(){
     $('.btn-import-save').hide()
+    this.model.save(this.model.toJSON(), {type: 'put'});
     this.trigger('clustersIncoming', this.clusterCollections)
   },
 

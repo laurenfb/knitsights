@@ -55,10 +55,14 @@ const EditView = Backbone.View.extend({
       // grab the new collection (had to do this manually)
       let newCollection = this.findNewCluster(newID);
       // remove project from the old collection
+
       this.project.collection.remove(this.project);
       // add it to the new collection
       newCollection.add(this.project);
-      // console.log("changed to new collection: ", this.project.collection.name);
+      this.project.set("clusterID", newCollection.id)
+      // add it to the changed project array for the user
+      this.user.get("changedProjects").push(this.project.toJSON())
+      // console.log(this.user.get("changedProjects"))
     }
     // hide the modal after something is changed.
     this.$el.empty();
@@ -75,7 +79,7 @@ const EditView = Backbone.View.extend({
   },
 
   archiveProject: function(){
-    // destroying the project straight-up does NOT work. the request doesn't go along nicely for the backend to get it. sooooo we're saving it. 
+    // destroying the project straight-up does NOT work. the request doesn't go along nicely for the backend to get it. sooooo we're saving it.
     if (window.confirm("delete this project?")) {
       this.project.collection.remove(this.project);
       this.project.save();
