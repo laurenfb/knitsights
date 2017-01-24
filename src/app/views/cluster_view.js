@@ -8,14 +8,13 @@ const ClusterView = Backbone.View.extend({
   initialize: function(options){
     this.clusterT = _.template($('#cluster-template').html());
     this.user = options.user;
-    // this.listenTo("saveClicked",this.model.calcAverageDays)
   },
 
   render: function() {
-    // console.log("ClusterView rendered")
+    // console.log("ClusterView rendered", this.model)
     // console.log('this.user in clusterview', this.user)
     let cluster = $(this.clusterT(this.model))
-    this.$el.append(cluster);
+    this.$el.html(cluster);
     this.model.forEach(function(project) {
       let projectView = new ProjectView({
         model: project,

@@ -48,27 +48,27 @@ const ImportView = Backbone.View.extend({
   },
 
   renderClusters: function(response, self) {
-      for (var i = 0; i < response["clusters"].length; i++) {
-        // console.log("self.model in importview", self.model)
-        let clus = response["clusters"][i];
-        // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
-        if (clus["projects"].length != 0) {
-          let clusID = clus["projects"][0]["cluster_id"];
-          let cluster =  new Cluster(null,
-                                    {name: clus["name"],
-                                    id: clusID});
-          let clusterView = new ClusterView({
-            model: cluster,
-            user: self.model
-          });
-          // when this functionality was in here instead of broken out into a separate function, it did not go well.
-          self.putProjectsInClusters(cluster, clus["projects"])
-          // render cluster and append it to 'main'
-          self.$el.append(clusterView.render().$el);
-        } // end of if statement
-      } // end of for loop
-
-
+    for (var i = 0; i < response["clusters"].length; i++) {
+      // console.log("self.model in importview", self.model)
+      let clus = response["clusters"][i];
+      // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
+      if (clus["projects"].length != 0) {
+        let clusID = clus["projects"][0]["cluster_id"];
+        let cluster =  new Cluster(null,
+                                  {name: clus["name"],
+                                  id: clusID});
+        let clusterView = new ClusterView({
+          model: cluster,
+          user: self.model
+        });
+        // when this functionality was in here instead of broken out into a separate function, it did not go well.
+        self.putProjectsInClusters(cluster, clus["projects"])
+        // render cluster and append it to 'main'
+        self.$el.append(clusterView.render().$el);
+        // re-render if projects are added or removed
+        clusterView.listenTo(cluster, "add remove", clusterView.render)
+      } // end of if statement
+    } // end of for loop
   }, //  renderClusters fx
 
   events: {
