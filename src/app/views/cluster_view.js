@@ -5,32 +5,32 @@ import ProjectView from './project_view';
 
 
 const ClusterView = Backbone.View.extend({
-  initialize: function(){
+  initialize: function(options){
     this.clusterT = _.template($('#cluster-template').html());
-    // this.listenTo("saveClicked",this.model.calcAverageDays)
+    this.user = options.user;
   },
 
   render: function() {
-    // console.log("ClusterView rendered")
-    // console.log(this.model)
+    // console.log("ClusterView rendered", this.model)
+    // console.log('this.user in clusterview', this.user)
     let cluster = $(this.clusterT(this.model))
-    this.$el.append(cluster);
+    this.$el.html(cluster);
     this.model.forEach(function(project) {
-      let projectView = new ProjectView({model: project})
+      let projectView = new ProjectView({
+        model: project,
+        user: this.user,
+        cluster: this.model
+      })
       cluster.append(projectView.render().$el);
+      this.listenTo(projectView, 'projectEdit', this.sendProject);
     }, this);
-    // this.delegateEvents(this.events);
+
     return this;
   },
 
-  events: {
-    'click .cluster': 'sayHi'
-  },
-
-  sayHi: function(event) {
-    this.model.calcAverageDays();
-    event.stopPropagation();
-    // this.model.calcAverageDays();
+  sendProject: function(project) {
+    // send the project to the user to populate the user's editview.
+    this.user.populateView(project);
   }
 });
 

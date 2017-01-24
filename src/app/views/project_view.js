@@ -7,13 +7,22 @@ const ProjectView = Backbone.View.extend({
 
   initialize: function(options){
     this.projectT = _.template($('#project-template').html());
+    this.user = options.user;
+    this.cluster = options.cluster;
   },
 
   render: function() {
-    // console.log("projectview created", this.model.get("name"))
     this.$el.append(this.projectT(this.model.attributes))
     this.delegateEvents(this.events);
     return this;
+  },
+
+  events: {
+    'click' : 'popluateEditView'
+  },
+
+  popluateEditView: function(){
+    this.trigger('projectEdit', this.model)
   }
 });
 

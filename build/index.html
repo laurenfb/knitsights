@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>hi capstone</title>
+    <title>knitsights</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-
+    <div id="background-cover">
+    </div>
     <main>
+      <div id='edit-holder'></div>
       <div id='button-holder'>
         <a class='button btn-import-save' href='#'>import</a>
         <p id='message'></p>
@@ -60,7 +62,27 @@
         <p>average: <%- avgDays %> days</p>
       </div>
     </script>
+
+    <script type="text/template" id="edit-template">
+        <section id="edit-cluster">
+          <h4><%- name %></h4>
+          <p>current category: <%- clusterName %></p>
+          <ul class='dropdown menu vertical' id='category-dropdown'></ul>
+          <div class='edit-buttons'>
+            <a class='button change-cluster'>change category</a>
+            <a class='button remove-project'>remove project</a>
+          </div>
+
+        </section>
+    </script>
+
+    <script type="text/template" id="dropdown-entry-template">
+      <li class="category" id="<%- categoryName %>"><%- categoryName %></li>
+    </script>
     <!-- thanks, Webpack! -->
     <script src="app.bundle.js" charset="utf-8"></script>
+
+
+
   </body>
 </html>

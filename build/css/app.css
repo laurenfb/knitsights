@@ -11,7 +11,6 @@
 h1{
   font-family: 'Noticia Text', serif;
 }
-
 img{
   border-radius: 50%;
 }
@@ -88,7 +87,6 @@ nav ul li a:hover{
   text-align: center;
 }
 
-
 .spinner{
   margin-top: 7%;
 }
@@ -106,4 +104,48 @@ nav ul li a:hover{
 
 .thumbnail h4, .thumbnail p, .thumbnail img{
   margin-top: 5%;
+}
+
+/* ---- editview, let's make this happen ---- */
+
+#background-cover {
+  background-color: rgba(232, 217, 241, 0.38);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  display: none;
+}
+
+#edit-cluster{
+  margin-top: 10vmin;
+  margin-left: 20vmin;
+  z-index: 10000;
+  background-color: gold;
+  position: fixed;
+  padding: 3%;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+}
+
+#edit-cluster h4{
+  /*font-size: 20em;*/
+}
+
+#category-dropdown{
+  display: none;
+  z-index: 10001;
+  background-color: white;
+  border: 2px black solid;
+}
+
+.category:nth-child(even){
+  background-color: lightgray;
+}
+
+.category:hover{
+  background-color: lightgreen;
 }

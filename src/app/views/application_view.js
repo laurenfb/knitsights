@@ -24,7 +24,8 @@ const ApplicationView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-import-save': 'import'
+    'click .btn-import-save': 'import',
+    'click #background-cover': 'hideEditView'
   },
 
   import: function(event) {
@@ -34,18 +35,21 @@ const ApplicationView = Backbone.View.extend({
       el: $('main'),
       model: new User({name: "laureneliz"})
     });
+    importV.model.save();
     importV.render();
 
     this.listenTo(importV, 'clustersIncoming', this.save)
   },
 
   save: function(clusterCollections) {
-    // event.preventDefault();
-    console.log(clusterCollections)
-    console.log("save fx called")
     let accountV = new AccountView({el: $('main'),
                                     clusterCollections: clusterCollections});
     accountV.render();
+  },
+
+  hideEditView: function() {
+    $('#edit-holder').empty()
+    $('#background-cover').hide()
   }
 });
 

@@ -11,8 +11,8 @@ const AccountView = Backbone.View.extend({
   render: function() {
     $('.btn-save').hide();
     $('main').empty();
-    console.log('accountview model', this.clusters);
-    console.log("AccountView rendered");
+    // console.log('accountview model', this.clusters);
+    // console.log("AccountView rendered");
     this.renderClusters();
     return this;
   },
