@@ -6,12 +6,12 @@ const Project = Backbone.Model.extend({
   url: 'http://localhost:8000/api/projects/delete',
 
   toJSON: function(){
-    let json = {
+    let request = {
       "name": this.get("name"),
       "clusterID": this.get("clusterID"),
       "id": this.get("id")
     }
-    return json
+    return request
   },
 
   initialize: function(options){
