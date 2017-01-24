@@ -8204,10 +8204,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import foundation from 'foundation';
+
+
 	(0, _jquery2.default)(document).ready(function () {
+	  // $(document).foundation();
 	  var application = new _application_view2.default({
 	    el: (0, _jquery2.default)('body')
-	    //, model: user // or something? there needs to be a model here eventually
 	  });
 
 	  application.render();
@@ -8267,7 +8270,8 @@
 	  },
 
 	  events: {
-	    'click .btn-import-save': 'import'
+	    'click .btn-import-save': 'import',
+	    'click #background-cover': 'hideEditView'
 	  },
 
 	  import: function _import(event) {
@@ -8277,18 +8281,21 @@
 	      el: (0, _jquery2.default)('main'),
 	      model: new _user2.default({ name: "laureneliz" })
 	    });
+	    importV.model.save();
 	    importV.render();
 
 	    this.listenTo(importV, 'clustersIncoming', this.save);
 	  },
 
 	  save: function save(clusterCollections) {
-	    // event.preventDefault();
-	    console.log(clusterCollections);
-	    console.log("save fx called");
 	    var accountV = new _account_view2.default({ el: (0, _jquery2.default)('main'),
 	      clusterCollections: clusterCollections });
 	    accountV.render();
+	  },
+
+	  hideEditView: function hideEditView() {
+	    (0, _jquery2.default)('#edit-holder').empty();
+	    (0, _jquery2.default)('#background-cover').hide();
 	  }
 	});
 
@@ -22038,7 +22045,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// below here, these import lines may not be needed in this file later
-	var opts = {
+	var SPINNER_OPTIONS = {
 	  lines: 13, length: 28, width: 14, radius: 42, scale: 1, corners: 1, color: '#000', opacity: 0.25, rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'spinner', top: '50%', left: '50%', shadow: false, hwaccel: false, position: 'relative'
 	};
 
@@ -22052,43 +22059,54 @@
 	  },
 
 	  render: function render() {
-	    this.renderClusters();
+	    this.fetchData();
 	    return this;
 	  },
 
-	  renderClusters: function renderClusters() {
-	    // THIS FUNCTION IS TOOOOO LONG AND IT SHOULD BE REFACTORRREDDDDD.
-
+	  fetchData: function fetchData() {
 	    // make spinner
 	    // can't use jQuery here unless i get a special plugin. maybe later because it WORKS now.
 	    var target = document.getElementById('spinner-holder');
-	    var spin = new _spin2.default(opts).spin(target);
+	    var spin = new _spin2.default(SPINNER_OPTIONS).spin(target);
 	    (0, _jquery2.default)('#message').html("fetching your projects from ravelry. this may take a few moments.");
 
 	    // using these vars because the .fetch.done() doesn't let me use a foreach as nicely as an anon fx, so 'this' is not available inside.
 	    var self = this;
-
 	    this.model.fetch().done(function (response) {
-	      for (var i = 0; i < response["clusters"].length; i++) {
-	        var clus = response["clusters"][i];
-	        // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
-	        if (clus["projects"].length != 0) {
-	          var clusID = clus["projects"][0]["cluster_id"];
-	          var cluster = new _cluster2.default(null, { name: clus["name"],
-	            id: clusID });
-	          var clusterView = new _cluster_view2.default({
-	            model: cluster
-	          });
-	          // when this functionality was in here instead of broken out into a separate function, it did not go well.
-	          self.putProjectsInClusters(cluster, clus["projects"]);
-	          // render cluster and append it to 'main'
-	          self.$el.append(clusterView.render().$el);
-	        } // end of if statement
-	      } // end of for loop
+	      self.renderClusters(response, self);
 	      (0, _jquery2.default)('#message').empty();
 	      spin.stop();
-	    } // end of anon fx with arg response
-	    ); // end of done()
+	    }).fail(function (response) {
+	      spin.stop();
+	      self.onFailure(response, self);
+	    }).always(function () {
+	      self.model.set("clusters", self.clusterCollections);
+	      // console.log("this is the model", self.model)
+	      // console.log("this is clustercollections", self.clusterCollections);
+	    }); // end of anon fx with arg response// end of done()fail()always()
+	  },
+
+	  renderClusters: function renderClusters(response, self) {
+	    for (var i = 0; i < response["clusters"].length; i++) {
+	      // console.log("self.model in importview", self.model)
+	      var clus = response["clusters"][i];
+	      // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
+	      if (clus["projects"].length != 0) {
+	        var clusID = clus["projects"][0]["cluster_id"];
+	        var cluster = new _cluster2.default(null, { name: clus["name"],
+	          id: clusID });
+	        var clusterView = new _cluster_view2.default({
+	          model: cluster,
+	          user: self.model
+	        });
+	        // when this functionality was in here instead of broken out into a separate function, it did not go well.
+	        self.putProjectsInClusters(cluster, clus["projects"]);
+	        // render cluster and append it to 'main'
+	        self.$el.append(clusterView.render().$el);
+	        // re-render if projects are added or removed
+	        clusterView.listenTo(cluster, "add remove", clusterView.render);
+	      } // end of if statement
+	    } // end of for loop
 	  }, //  renderClusters fx
 
 	  events: {
@@ -22097,6 +22115,7 @@
 
 	  sendClusters: function sendClusters() {
 	    (0, _jquery2.default)('.btn-import-save').hide();
+	    this.model.save(this.model.toJSON(), { type: 'put' });
 	    this.trigger('clustersIncoming', this.clusterCollections);
 	  },
 
@@ -22107,6 +22126,11 @@
 	    }
 	    this.clusterCollections.push(cluster);
 	    return cluster;
+	  },
+
+	  onFailure: function onFailure(response, self) {
+	    (0, _jquery2.default)('#message').empty();
+	    (0, _jquery2.default)('#message').append('looks like we ran into an error. please refresh the page and try again!');
 	  }
 	});
 
@@ -22116,7 +22140,7 @@
 /* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22129,13 +22153,30 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Project = _backbone2.default.Model.extend({
+	  url: 'https://knitsights-backend.herokuapp.com/api/projects/delete',
+
+	  // url: 'http://localhost:8000/api/projects/delete',
+
+	  toJSON: function toJSON() {
+	    var request = {
+	      "name": this.get("name"),
+	      "clusterID": this.get("clusterID"),
+	      "id": this.get("id")
+	    };
+	    return request;
+	  },
 
 	  initialize: function initialize(options) {
 	    var name = options.name.toLowerCase();
 	    if (name.length >= 17) {
-	      name = name.slice(0, 13) + "...";
+	      var shortName = name.slice(0, 13) + "...";
+	    } else {
+	      var shortName = name;
 	    }
+
+	    this.set("id", options.id);
 	    this.set("name", name);
+	    this.set("shortName", shortName);
 	    this.set("clusterID", options.cluster_id);
 	    this.set("photoURL", options.photo_url);
 	    this.set("timeInDays", options.time_in_days);
@@ -22226,32 +22267,32 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ClusterView = _backbone2.default.View.extend({
-	  initialize: function initialize() {
+	  initialize: function initialize(options) {
 	    this.clusterT = _underscore2.default.template((0, _jquery2.default)('#cluster-template').html());
-	    // this.listenTo("saveClicked",this.model.calcAverageDays)
+	    this.user = options.user;
 	  },
 
 	  render: function render() {
-	    // console.log("ClusterView rendered")
-	    // console.log(this.model)
+	    // console.log("ClusterView rendered", this.model)
+	    // console.log('this.user in clusterview', this.user)
 	    var cluster = (0, _jquery2.default)(this.clusterT(this.model));
-	    this.$el.append(cluster);
+	    this.$el.html(cluster);
 	    this.model.forEach(function (project) {
-	      var projectView = new _project_view2.default({ model: project });
+	      var projectView = new _project_view2.default({
+	        model: project,
+	        user: this.user,
+	        cluster: this.model
+	      });
 	      cluster.append(projectView.render().$el);
+	      this.listenTo(projectView, 'projectEdit', this.sendProject);
 	    }, this);
-	    // this.delegateEvents(this.events);
+
 	    return this;
 	  },
 
-	  events: {
-	    'click .cluster': 'sayHi'
-	  },
-
-	  sayHi: function sayHi(event) {
-	    this.model.calcAverageDays();
-	    event.stopPropagation();
-	    // this.model.calcAverageDays();
+	  sendProject: function sendProject(project) {
+	    // send the project to the user to populate the user's editview.
+	    this.user.populateView(project);
 	  }
 	});
 
@@ -22286,13 +22327,22 @@
 
 	  initialize: function initialize(options) {
 	    this.projectT = _underscore2.default.template((0, _jquery2.default)('#project-template').html());
+	    this.user = options.user;
+	    this.cluster = options.cluster;
 	  },
 
 	  render: function render() {
-	    // console.log("projectview created", this.model.get("name"))
 	    this.$el.append(this.projectT(this.model.attributes));
 	    this.delegateEvents(this.events);
 	    return this;
+	  },
+
+	  events: {
+	    'click': 'popluateEditView'
+	  },
+
+	  popluateEditView: function popluateEditView() {
+	    this.trigger('projectEdit', this.model);
 	  }
 	});
 
@@ -22717,8 +22767,8 @@
 	  render: function render() {
 	    (0, _jquery2.default)('.btn-save').hide();
 	    (0, _jquery2.default)('main').empty();
-	    console.log('accountview model', this.clusters);
-	    console.log("AccountView rendered");
+	    // console.log('accountview model', this.clusters);
+	    // console.log("AccountView rendered");
 	    this.renderClusters();
 	    return this;
 	  },
@@ -22765,8 +22815,6 @@
 	  },
 
 	  render: function render() {
-	    console.log("ThumbnailClusterView rendered");
-	    console.log(this.$el);
 	    this.$el.append(this.thumbnailT({ model: this.model,
 	      photoURL: this.getPhoto(),
 	      avgDays: this.model.calcAverageDays(),
@@ -22775,7 +22823,6 @@
 	  },
 
 	  getPhoto: function getPhoto() {
-	    console.log(this.model);
 	    return this.model.getRandomPhoto();
 	  }
 	});
@@ -22796,23 +22843,168 @@
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
+	var _edit_view = __webpack_require__(312);
+
+	var _edit_view2 = _interopRequireDefault(_edit_view);
+
+	var _jquery = __webpack_require__(302);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var User = _backbone2.default.Model.extend({
-	  url: 'https://knitsights-backend.herokuapp.com/api/get_projects/laureneliz',
-
+	  // url: 'http://localhost:8000/api/projects/laureneliz',
+	  //
+	  url: 'https://knitsights-backend.herokuapp.com/api/projects/laureneliz',
+	  //
 	  parse: function parse() {},
-	  toJSON: function toJSON() {},
+	  toJSON: function toJSON() {
+	    var request = {
+	      "user": this.get("name"),
+	      "imported": true,
+	      "projects": this.get("changedProjects")
+	    };
+	    return request;
+	  },
 
 	  initialize: function initialize(options) {
 	    this.set("name", options.name);
 	    this.set("photoURL", options.photo_url);
 	    this.set("imported", options.imported);
-	  }
+	    this.set("clusters", []);
+	    this.set("changedProjects", []);
+	    // this.listenTo("hi", 'projectIncoming', this.makeEditView)
+	    this.editV = this.makeEditView();
+	  },
 
+	  makeEditView: function makeEditView(model) {
+	    var editV = new _edit_view2.default({
+	      el: (0, _jquery2.default)('#edit-holder'),
+	      user: this
+	    });
+	    return editV;
+	  },
+
+	  populateView: function populateView(project) {
+	    this.editV.render(project);
+	  }
 	});
 
 	exports.default = User;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _backbone = __webpack_require__(300);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _underscore = __webpack_require__(301);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	var _jquery = __webpack_require__(302);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var EditView = _backbone2.default.View.extend({
+	  initialize: function initialize(options) {
+	    this.editT = _underscore2.default.template((0, _jquery2.default)('#edit-template').html());
+	    this.dropdownEntryT = _underscore2.default.template((0, _jquery2.default)('#dropdown-entry-template').html());
+	    this.user = options.user;
+	    // initialized as null, but once we get an editview later on, we'll put in (or change up) the project model stored here.
+	    this.project = null;
+	  },
+
+	  render: function render(project) {
+	    this.project = project;
+	    (0, _jquery2.default)('#background-cover').show();
+
+	    // add the edit template
+	    this.$el.prepend(this.editT({
+	      name: project.get("name"),
+	      clusterName: project.collection.name
+	    }));
+
+	    var clusters = this.user.get("clusters");
+
+	    var self = this;
+	    for (var i = 0; i < clusters.length; i++) {
+	      (0, _jquery2.default)('#category-dropdown').append(self.dropdownEntryT({
+	        categoryName: clusters[i].name
+	      }));
+	    };
+	    return this;
+	  },
+
+	  events: {
+	    'click': 'changeCluster',
+	    'click .category': 'changeCategory',
+	    'click .remove-project': 'archiveProject'
+	  },
+
+	  changeCluster: function changeCluster(event) {
+	    (0, _jquery2.default)('.edit-buttons').toggle();
+	    (0, _jquery2.default)('#category-dropdown').toggle();
+	  },
+
+	  changeCategory: function changeCategory(event) {
+	    // toggle the buttons!
+	    this.changeCluster();
+	    // change things up.
+	    var newID = event.target.id;
+	    // check to make sure it's okay
+	    if (window.confirm("change this project to " + newID + "?")) {
+	      event.preventDefault();
+	      // grab the new collection (had to do this manually)
+	      var newCollection = this.findNewCluster(newID);
+	      // remove project from the old collection
+
+	      this.project.collection.remove(this.project);
+	      // add it to the new collection
+	      newCollection.add(this.project);
+	      this.project.set("clusterID", newCollection.id);
+	      // add it to the changed project array for the user
+	      this.user.get("changedProjects").push(this.project.toJSON());
+	      // console.log(this.user.get("changedProjects"))
+	    }
+	    // hide the modal after something is changed.
+	    this.$el.empty();
+	    (0, _jquery2.default)('#background-cover').hide();
+	  },
+
+	  findNewCluster: function findNewCluster(nameOfCluster) {
+	    var clusters = this.user.get("clusters");
+	    for (var i = 0; i < clusters.length; i++) {
+	      if (clusters[i].name == nameOfCluster) {
+	        return clusters[i];
+	      };
+	    };
+	  },
+
+	  archiveProject: function archiveProject(event) {
+	    event.stopPropagation();
+	    // destroying the project straight-up does NOT work. the request doesn't go along nicely for the backend to get it. sooooo we're saving it.
+	    if (window.confirm("delete this project?")) {
+	      this.project.collection.remove(this.project);
+	      this.project.save();
+	      this.$el.empty();
+	      (0, _jquery2.default)('#background-cover').hide();
+	    }
+	  }
+	});
+
+	exports.default = EditView;
 
 /***/ }
 /******/ ]);
