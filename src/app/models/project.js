@@ -1,6 +1,18 @@
 import Backbone from 'backbone';
 
 const Project = Backbone.Model.extend({
+  // url: 'https://knitsights-backend.herokuapp.com/api/project/laureneliz/delete',
+
+  url: 'http://localhost:8000/api/projects/delete',
+
+  toJSON: function(){
+    let json = {
+      "name": this.get("name"),
+      "clusterID": this.get("clusterID"),
+      "id": this.get("id")
+    }
+    return json
+  },
 
   initialize: function(options){
     var name = options.name.toLowerCase();

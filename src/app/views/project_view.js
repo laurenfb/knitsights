@@ -21,9 +21,7 @@ const ProjectView = Backbone.View.extend({
     'click' : 'popluateEditView'
   },
 
-  popluateEditView: function(e){
-    console.log(this.model);
-    console.log(this.user);
+  popluateEditView: function(){
     this.trigger('projectEdit', this.model)
   }
 });
