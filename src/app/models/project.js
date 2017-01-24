@@ -1,9 +1,9 @@
 import Backbone from 'backbone';
 
 const Project = Backbone.Model.extend({
-  // url: 'https://knitsights-backend.herokuapp.com/api/project/laureneliz/delete',
+  url: 'https://knitsights-backend.herokuapp.com/api/projects/delete',
 
-  url: 'http://localhost:8000/api/projects/delete',
+  // url: 'http://localhost:8000/api/projects/delete',
 
   toJSON: function(){
     let request = {
