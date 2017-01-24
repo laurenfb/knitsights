@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Noticia+Text');
-@import url('https://fonts.googleapis.com/css?family=Karla');
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
 /* ---- global styling ---- */
@@ -41,13 +40,12 @@ nav ul li a:hover{
 /* ---- buttons ---- */
 
 #button-holder{
-  /*background-color: gold;*/
   height: 100px;
   text-align: center;
   padding-top: 3%;
   padding-bottom: 3%;
 }
-.btn-import-save{
+.button{
   background-color: rgb(64, 64, 64);
   /*color: black;*/
   font-weight: bold;
@@ -55,7 +53,7 @@ nav ul li a:hover{
   padding: 1.5% 2% 1.5% 2%;
 }
 
-.btn-import-save:hover{
+.button:hover{
   background-color: black;
   box-shadow: 1.5px 1.5px 1.5px grey;
 }
@@ -109,7 +107,7 @@ nav ul li a:hover{
 /* ---- editview, let's make this happen ---- */
 
 #background-cover {
-  background-color: rgba(232, 217, 241, 0.38);
+  background-color: rgba(167, 167, 167, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -120,19 +118,26 @@ nav ul li a:hover{
 }
 
 #edit-cluster{
-  margin-top: 10vmin;
-  margin-left: 20vmin;
+  margin: auto;
+  margin-top: 50px;
+  margin-left: 300px;
   z-index: 10000;
-  background-color: gold;
+  background-color: white;
   position: fixed;
   padding: 3%;
   width: 300px;
   height: 300px;
   text-align: center;
+  box-shadow: 3px 3px 3px grey;
+  border-radius: 0.5%;
+}
+
+#edit-cluster .button{
+  padding: 7%;
 }
 
 #edit-cluster h4{
-  /*font-size: 20em;*/
+  font-weight: bolder;
 }
 
 #category-dropdown{
