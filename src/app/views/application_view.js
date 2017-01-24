@@ -35,6 +35,7 @@ const ApplicationView = Backbone.View.extend({
       el: $('main'),
       model: new User({name: "laureneliz"})
     });
+    importV.model.save();
     importV.render();
 
     this.listenTo(importV, 'clustersIncoming', this.save)
