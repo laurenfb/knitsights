@@ -20,6 +20,11 @@ main{
   text-align: center;
 }
 
+ul{
+   list-style-type: none;
+   text-align: center;
+}
+
 /* ---- header styling ---- */
 
 header{
@@ -28,7 +33,6 @@ header{
   padding-bottom: 1%;
 }
 nav ul li{
-  list-style-type: none;
   display: inline;
 }
 nav ul li a{
@@ -95,7 +99,16 @@ nav ul li a:hover{
   margin-top: 7%;
 }
 
+.project:hover{
+  border: 0.25px solid black;
+}
+
 /* ---- cluster styling on accountview ---- */
+
+.thumbnail:hover, .project:hover{
+  box-shadow: 0 0 0 1px lightgreen;
+}
+
 .thumbnail{
   border: 0.5px solid black;
   box-shadow: 0 0 2px #000;
@@ -110,9 +123,8 @@ nav ul li a:hover{
   margin-top: 4%;
 }
 
-.thumbnail:hover{
-  box-shadow: 0 0 0 1px lightgreen;
-}
+
+
 
 /* ---- editview, let's make this happen ---- */
 
