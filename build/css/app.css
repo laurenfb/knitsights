@@ -18,6 +18,9 @@ ul{
   text-align: center;
 }
 
+main{
+  text-align: center;
+}
 /* ---- header styling ---- */
 
 header{
@@ -55,7 +58,9 @@ nav ul li a:hover{
   display: inline-block;
   padding: 1.5% 2% 1.5% 2%;
 }
-
+.button:focus{
+  background-color: rgb(64, 64, 64);
+}
 .button:hover{
   background-color: black;
   box-shadow: 1.5px 1.5px 1.5px grey;
@@ -68,7 +73,7 @@ nav ul li a:hover{
   padding: 1%;
   margin: 1%;
   text-align: center;
-  border: 1px solid black;
+  box-shadow: 0 0 2px #000;
   width: 150px;
   /*height: 150px;*/
   word-wrap: break-word;
@@ -80,32 +85,43 @@ nav ul li a:hover{
 
 /* ---- cluster styling on importview ---- */
 .cluster{
-  border: 1px solid black;
+  border: 1px solid rgb(195, 195, 195);
   padding: 1%;
   margin: 1%;
-  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
   text-align: center;
+  box-shadow: 0 0 2px #000;
+  width: 35vw;
+  float: left;
 }
 
 .spinner{
   margin-top: 7%;
 }
+#cluster-holder{
+  margin: 0 10vw 0 10vw;
+}
 
 /* ---- cluster styling on accountview ---- */
 .thumbnail{
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   padding: 0.7%;
   margin: 1%;
-  background-color: rgba(210, 217, 215, 0.34);
   height: 250px;
   width: 250px;
   text-align: center;
+  box-shadow: 0 0 7px #000;
 }
 
-.thumbnail h4, .thumbnail p, .thumbnail img{
-  margin-top: 5%;
+.thumbnail:hover{
+  box-shadow: 0 0 7px lightgreen;
 }
+
+.thumbnail h4, .thumbnail img{
+  margin-top: 4%;
+}
+
+
 
 /* ---- editview, let's make this happen ---- */
 
