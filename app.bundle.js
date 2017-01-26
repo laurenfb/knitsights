@@ -22081,16 +22081,12 @@
 	      self.onFailure(response, self);
 	    }).always(function () {
 	      self.model.set("clusters", self.clusterCollections);
-	      // console.log("this is the model", self.model)
-	      // console.log("this is clustercollections", self.clusterCollections);
 	    }); // end of anon fx with arg response// end of done()fail()always()
 	  },
 
 	  renderClusters: function renderClusters(response, self) {
 	    for (var i = 0; i < response["clusters"].length; i++) {
-	      // console.log("self.model in importview", self.model)
 	      var clus = response["clusters"][i];
-	      // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
 	      if (clus["projects"].length != 0) {
 	        var clusID = clus["projects"][0]["cluster_id"];
 	        var cluster = new _cluster2.default(null, { name: clus["name"],
@@ -22209,19 +22205,21 @@
 	  model: _project2.default,
 
 	  initialize: function initialize(models, options) {
-	    // console.log("arguments",arguments)
 	    this.name = options.name;
 	    this.id = options.id;
 	  },
 
 	  calcAverageDays: function calcAverageDays() {
-	    // console.log("we've gotten to calcAverageDays")
 	    var total = 0;
 	    for (var i = 0; i < this.models.length; i++) {
 	      total += this.models[i].get("timeInDays");
 	    }
 	    var avg = parseInt(total / this.models.length);
-	    return avg;
+	    if (avg === 1) {
+	      return "1 day";
+	    } else {
+	      return avg.toString() + " days";
+	    }
 	  },
 
 	  getRandomPhoto: function getRandomPhoto() {
@@ -22232,8 +22230,33 @@
 	    var random = Math.floor(Math.random() * (max - min)) + min;
 	    var photo = this.models[random].get("photoURL");
 	    return photo;
-	  }
+	  },
 
+	  getShortestProj: function getShortestProj() {
+	    var arrDays = [];
+	    for (var i = 0; i < this.models.length; i++) {
+	      arrDays.push(this.models[i].get("timeInDays"));
+	    }
+	    var min = Math.min.apply(Math, arrDays);
+	    if (min === 1) {
+	      return "1 day";
+	    } else {
+	      return min.toString() + " days";
+	    }
+	  },
+
+	  getLongestProj: function getLongestProj() {
+	    var arrDays = [];
+	    for (var i = 0; i < this.models.length; i++) {
+	      arrDays.push(this.models[i].get("timeInDays"));
+	    }
+	    var max = Math.max.apply(Math, arrDays);
+	    if (max === 1) {
+	      return "1 day";
+	    } else {
+	      return max.toString() + " days";
+	    }
+	  }
 	});
 
 	exports.default = Cluster;
@@ -22273,8 +22296,6 @@
 	  },
 
 	  render: function render() {
-	    // console.log("ClusterView rendered", this.model)
-	    // console.log('this.user in clusterview', this.user)
 	    var cluster = (0, _jquery2.default)(this.clusterT(this.model));
 	    this.$el.html(cluster);
 	    this.model.forEach(function (project) {
@@ -22767,8 +22788,6 @@
 	  render: function render() {
 	    (0, _jquery2.default)('.btn-save').hide();
 	    (0, _jquery2.default)('main').empty();
-	    // console.log('accountview model', this.clusters);
-	    // console.log("AccountView rendered");
 	    this.renderClusters();
 	    return this;
 	  },
@@ -22816,14 +22835,12 @@
 
 	  render: function render() {
 	    this.$el.append(this.thumbnailT({ model: this.model,
-	      photoURL: this.getPhoto(),
+	      photoURL: this.model.getRandomPhoto(),
 	      avgDays: this.model.calcAverageDays(),
+	      shortest: this.model.getShortestProj(),
+	      longest: this.model.getLongestProj(),
 	      name: this.model.name }));
 	    return this;
-	  },
-
-	  getPhoto: function getPhoto() {
-	    return this.model.getRandomPhoto();
 	  }
 	});
 
@@ -22976,7 +22993,6 @@
 	      this.project.set("clusterID", newCollection.id);
 	      // add it to the changed project array for the user
 	      this.user.get("changedProjects").push(this.project.toJSON());
-	      // console.log(this.user.get("changedProjects"))
 	    }
 	    // hide the modal after something is changed.
 	    this.$el.empty();
