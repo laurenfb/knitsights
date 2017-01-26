@@ -7,11 +7,22 @@
 *,h2,h3,h4,h5,h6,p {
   font-family: 'Muli', sans-serif;
 }
+
 h1{
   font-family: 'Noticia Text', serif;
 }
+
 img{
   border-radius: 50%;
+}
+
+main{
+  text-align: center;
+}
+
+ul{
+   list-style-type: none;
+   text-align: center;
 }
 
 /* ---- header styling ---- */
@@ -22,7 +33,6 @@ header{
   padding-bottom: 1%;
 }
 nav ul li{
-  list-style-type: none;
   display: inline;
 }
 nav ul li a{
@@ -53,10 +63,11 @@ nav ul li a:hover{
   padding: 1.5% 2% 1.5% 2%;
 }
 
-.button:hover{
+.button:hover, .button:focus{
   background-color: black;
   box-shadow: 1.5px 1.5px 1.5px grey;
 }
+
 
 /* ---- project styling ---- */
 
@@ -65,9 +76,8 @@ nav ul li a:hover{
   padding: 1%;
   margin: 1%;
   text-align: center;
-  border: 1px solid black;
+  box-shadow: 0 0 2px #000;
   width: 150px;
-  /*height: 150px;*/
   word-wrap: break-word;
 }
 
@@ -77,32 +87,45 @@ nav ul li a:hover{
 
 /* ---- cluster styling on importview ---- */
 .cluster{
-  border: 1px solid black;
+  border: 1px solid rgb(195, 195, 195);
   padding: 1%;
   margin: 1%;
-  background-color: rgba(210, 217, 215, 0.34);
   height: 100%;
   text-align: center;
+  box-shadow: 0 0 2px #000;
+  /*float: left;*/
 }
 
 .spinner{
   margin-top: 7%;
 }
 
+.project:hover{
+  border: 0.25px solid black;
+}
+
 /* ---- cluster styling on accountview ---- */
+
+.thumbnail:hover, .project:hover{
+  box-shadow: 0 0 0 1px lightgreen;
+}
+
 .thumbnail{
-  border: 1px solid black;
+  border: 0.5px solid black;
+  box-shadow: 0 0 2px #000;
   padding: 0.7%;
   margin: 1%;
-  background-color: rgba(210, 217, 215, 0.34);
   height: 250px;
   width: 250px;
   text-align: center;
 }
 
-.thumbnail h4, .thumbnail p, .thumbnail img{
-  margin-top: 5%;
+.thumbnail h4, .thumbnail img{
+  margin-top: 4%;
 }
+
+
+
 
 /* ---- editview, let's make this happen ---- */
 

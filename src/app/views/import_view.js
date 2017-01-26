@@ -42,16 +42,12 @@ const ImportView = Backbone.View.extend({
       self.onFailure(response, self);
     }).always(function(){
       self.model.set("clusters", self.clusterCollections);
-      // console.log("this is the model", self.model)
-      // console.log("this is clustercollections", self.clusterCollections);
     }) // end of anon fx with arg response// end of done()fail()always()
   },
 
   renderClusters: function(response, self) {
     for (var i = 0; i < response["clusters"].length; i++) {
-      // console.log("self.model in importview", self.model)
       let clus = response["clusters"][i];
-      // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
       if (clus["projects"].length != 0) {
         let clusID = clus["projects"][0]["cluster_id"];
         let cluster =  new Cluster(null,

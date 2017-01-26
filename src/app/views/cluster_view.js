@@ -11,8 +11,6 @@ const ClusterView = Backbone.View.extend({
   },
 
   render: function() {
-    // console.log("ClusterView rendered", this.model)
-    // console.log('this.user in clusterview', this.user)
     let cluster = $(this.clusterT(this.model))
     this.$el.html(cluster);
     this.model.forEach(function(project) {

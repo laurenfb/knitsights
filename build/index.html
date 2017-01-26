@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
   </head>
@@ -59,7 +60,11 @@
       <div>
         <h4><%- name %></h4>
         <img src='<%- photoURL %>' title='<%- name %> photo'\>
-        <p>average: <%- avgDays %> days</p>
+        <ul>
+           <li>average: <%- avgDays %></li>
+           <li>shortest: <%- shortest %></li>
+           <li>longest: <%- longest %> </li>
+         </ul>
       </div>
     </script>
 

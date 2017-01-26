@@ -13,14 +13,12 @@ const ThumbnailView = Backbone.View.extend({
   render: function() {
     this.$el.append(this.thumbnailT(
       {model: this.model,
-        photoURL: this.getPhoto(),
+        photoURL: this.model.getRandomPhoto(),
         avgDays: this.model.calcAverageDays(),
+        shortest: this.model.getShortestProj(),
+        longest: this.model.getLongestProj(),
         name: this.model.name}))
     return this;
-  },
-
-  getPhoto: function(){
-    return this.model.getRandomPhoto();
   }
 });
 
