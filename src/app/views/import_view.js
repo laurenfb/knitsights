@@ -51,7 +51,6 @@ const ImportView = Backbone.View.extend({
     for (var i = 0; i < response["clusters"].length; i++) {
       // console.log("self.model in importview", self.model)
       let clus = response["clusters"][i];
-      // strangely, i am getting some empty clusters back which should not be possible but oh well! that's a problem for another time.
       if (clus["projects"].length != 0) {
         let clusID = clus["projects"][0]["cluster_id"];
         let cluster =  new Cluster(null,
