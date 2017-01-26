@@ -62,7 +62,6 @@ const EditView = Backbone.View.extend({
       this.project.set("clusterID", newCollection.id)
       // add it to the changed project array for the user
       this.user.get("changedProjects").push(this.project.toJSON())
-      // console.log(this.user.get("changedProjects"))
     }
     // hide the modal after something is changed.
     this.$el.empty();
